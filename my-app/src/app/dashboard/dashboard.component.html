@@ -5,6 +5,7 @@
     <app-jumbotron></app-jumbotron>
 
     <app-navbar-bottom></app-navbar-bottom>
+    <br/>
 
     <app-breadcrumb></app-breadcrumb>
 
@@ -16,7 +17,7 @@
 
         <div class="row">
           
-          <div class="col-md-offset-10">
+          <div class="col-md-10 offset-10">
             <button class="btn btn-danger" (click)="open()">Add Master</button>
           </div>
 
@@ -24,8 +25,34 @@
 
         <br/>
 
-
         <div *ngFor="let user of users; let i = index">
+          <div class="card">
+              <div class="card-header">
+                  {{"Modulo " +  user.id + ":" }}
+              </div>
+              <ul class="list-group list-group-flush">
+                <div class="col-md-10 offset-10">
+                  <button class="btn btn-danger" (click)="openDetail(user.id)">Add Detail</button>
+                </div>
+              </ul>
+              <div *ngFor="let detail of user.details">
+                <div class="row">
+                  <div class="col-md-10">
+                    <li class="list-group-item">{{detail.name}}</li>
+                  </div>
+                  <div class="col-md-1">
+                      <button type="button" style="text-align:center;" (click)="openEdit(user.id, detail.id)" class="list-group-item"><i class="fa fa-edit fa-1x" aria-hidden="true"></i></button> 
+                  </div>
+                  <div class="col-md-1">
+                      <button type="button" style="text-align:center;" (click)="removeDetail(user.id,detail.id)" class="list-group-item"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+        <!-- <div *ngFor="let user of users; let i = index">
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">{{"Modulo " +  user.id + ":" }}</h3>
@@ -36,6 +63,16 @@
                   </div>
                   <br/>
               <div *ngFor="let detail of user.details" class="list-group">
+
+                  <div class="card" style="width: 18rem;">
+                      <div class="card-header">
+                          {{"Modulo " +  user.id + ":" }}
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{detail.name}}</li>
+                      </ul>
+                    </div>
+          
                 <div class="row">
                   <div class="col-md-10">
                     <button type="button" class="list-group-item">{{detail.name}}</button>
@@ -46,20 +83,27 @@
                   <div class="col-md-1">
                     <button type="button" style="text-align:center;" (click)="removeDetail(user.id,detail.id)" class="list-group-item"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></button>
                   </div>
-                  <!-- <div class="col-md-offset-10">
-                    <i class="fa fa-trash fa-1x" aria-hidden="true"></i>
-                  </div> -->
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         
       </div>
 
       <div class="col-md-3">
 
-          <div class="panel panel-default">
+          <div class="card" style="width: 18rem;">
+              <div class="card-header">
+                Navegador
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Inicio</li>
+                <li class="list-group-item">Area Personal</li>
+                <li class="list-group-item">Mis Cursos</li>
+              </ul>
+          </div>
+          <!-- <div class="panel panel-default">
               <div class="panel-heading">Navegador</div>
               <div class="panel-body">                  
                   <ul class="nav flex-column">
@@ -77,7 +121,7 @@
                       </li>
                   </ul> 
               </div>
-          </div>
+          </div> -->
 
       </div>
         
