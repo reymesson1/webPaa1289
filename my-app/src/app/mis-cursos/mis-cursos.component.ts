@@ -24,6 +24,12 @@ export class MisCursosComponent implements OnInit {
     this.restapiservice.getMaster();
   }
 
+  open() {
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = 'World';
+  }
+
+
   goTo(){
 
     this.router.navigateByUrl('/dashboard');    
