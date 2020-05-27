@@ -235,6 +235,33 @@ export class RestapiService {
             console.log("The POST observable is now completed.");
     });
   }
+  removeTask(idUrl, idModulo, idTask){
+    // this.restapiservice.editTask(event, this.nameurl, this.name , this.nameTask);    
+
+    console.log(idUrl);
+    console.log(idModulo);
+    console.log(idTask);
+
+    this.http.post("http://localhost:8080/removetask/",
+    {
+      "idCurso": idUrl,
+      "idModulo": idModulo,
+      "idTask": idTask,
+      "created" : "",
+      "creator": localStorage.token
+    })
+    .subscribe(
+          (val) => {
+              console.log("POST call successful value returned in body",val);
+          },
+          response => {
+            this.data=response;
+            console.log("POST call in error", response);
+          },
+          () => {
+            console.log("The POST observable is now completed.");
+    });
+  }
 
   
 

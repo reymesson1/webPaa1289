@@ -61,6 +61,10 @@ export class DashboardComponent implements OnInit {
     modalRef.componentInstance.nameTask = idTask;
     modalRef.componentInstance.nameurl = this.id;
   }
+  removeTask(idModulo:String,idTask:String) {
+
+    this.restapiservice.removeTask(this.id, idModulo, idTask);
+  }
   openEdit(id:String,detailId) {
     const modalRef = this.modalService.open(NgbdModalContentEdit);
     modalRef.componentInstance.name = id;
