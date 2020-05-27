@@ -14,6 +14,7 @@ export class RestapiService {
   TOKEN_KEY = 'token';
   users: Master[] = [];
   details: Detail[] = [];
+  tasks: Task[] = [];
 
   constructor(private http:HttpClient,private router : Router) {}
 
@@ -177,6 +178,35 @@ export class RestapiService {
 
     console.log(masterId + " " + detailId );
   }
+  addTask(event,id,idUrl){
+
+    console.log(id);
+    console.log(idUrl);
+    console.log(event.value.modulo);
+
+    this.http.post("http://localhost:8080/addtask/",
+    {
+      "id": id,
+      "idModulo": idUrl,
+      "name": event.value.modulo, 
+      "active": true,
+      "created" : "",
+      "creator": localStorage.token
+    })
+    .subscribe(
+          (val) => {
+              console.log("POST call successful value returned in body",val);
+          },
+          response => {
+            this.data=response;
+            console.log("POST call in error", response);
+          },
+          () => {
+            console.log("The POST observable is now completed.");
+    });
+  }
+
+  
 
 }
 
@@ -187,6 +217,11 @@ export interface Master {
   creator: string;
 }
 export interface Detail {
+  id: string;
+  name: string;
+  creator: string;
+}
+export interface Task {
   id: string;
   name: string;
   creator: string;
