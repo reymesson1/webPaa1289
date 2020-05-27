@@ -26,17 +26,22 @@
         <br/>
 
       <div *ngFor="let user of users.details; let i = index">
+        <br/>
         <div class="card">
           <div class="card-header">
             {{"Modulo " +  user.id + ":" }}
           </div>
           <ul class="list-group list-group-flush">
+            <br/>
             <div class="col-md-10 offset-10">
               <button class="btn btn-danger" (click)="openDetail(user.id)">Add Task</button>
             </div>
+            <br/>
           </ul>
           <div *ngFor="let detail of user.tasks">
+            <br/>
             <div class="row">
+              <br/>
               <div class="col-md-10">
                 <li class="list-group-item">{{detail.name}}</li>
               </div>
@@ -46,10 +51,12 @@
               <div class="col-md-1">
                 <button type="button" style="text-align:center;" (click)="removeDetail(user.id,detail.id)" class="list-group-item"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></button>
               </div>
+              <br/>
             </div>
+            <br/>
           </div>
           </div>
-  </div>
+        </div>
   
         
       </div>
