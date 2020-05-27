@@ -4,6 +4,7 @@ import { NgbdModalContent } from '../modal/ngbd-modal-content';
 import { NgbdModalContentDetail } from '../modal/ngbd-modal-content-detail';
 import { NgbdModalContentEdit } from '../modal/ngbd-modal-content-edit';
 import { NgbdModalContentTask } from '../modal/ngbd-modal-content-task';
+import { NgbdModalContentEditTask } from '../modal/ngbd-modal-content-edit-task';
 import { RestapiService, Master } from '../restapi.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -52,6 +53,12 @@ export class DashboardComponent implements OnInit {
   openTask(idModulo:String) {
     const modalRef = this.modalService.open(NgbdModalContentTask);
     modalRef.componentInstance.name = idModulo;
+    modalRef.componentInstance.nameurl = this.id;
+  }
+  openTaskEdit(idModulo:String,idTask:String) {
+    const modalRef = this.modalService.open(NgbdModalContentEditTask);
+    modalRef.componentInstance.name = idModulo;
+    modalRef.componentInstance.nameTask = idTask;
     modalRef.componentInstance.nameurl = this.id;
   }
   openEdit(id:String,detailId) {

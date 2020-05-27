@@ -17,6 +17,7 @@ import { NgbdModalContent } from './modal/ngbd-modal-content';
 import { NgbdModalContentDetail } from './modal/ngbd-modal-content-detail';
 import { NgbdModalContentEdit } from './modal/ngbd-modal-content-edit';
 import { NgbdModalContentTask } from './modal/ngbd-modal-content-task';
+import { NgbdModalContentEditTask } from './modal/ngbd-modal-content-edit-task';
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -35,6 +36,7 @@ import { ProfileComponent } from './profile/profile.component';
     NgbdModalContentDetail,
     NgbdModalContentEdit,
     NgbdModalContentTask,
+    NgbdModalContentEditTask,
     MisCursosComponent,
     ProfileComponent
   ],
@@ -47,6 +49,6 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask]
+  entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask, NgbdModalContentEditTask]
 })
 export class AppModule { }
