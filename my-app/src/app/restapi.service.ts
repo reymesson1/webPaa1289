@@ -263,6 +263,28 @@ export class RestapiService {
     });
   }
 
+  uploadFile(event){
+
+    const formData: FormData = new FormData();
+    formData.append('file', event, event.name);
+
+    this.http.post("http://localhost:8080/uploadtask/",
+    formData)
+    .subscribe(
+          (val) => {
+              console.log("POST call successful value returned in body",val);
+          },
+          response => {
+            this.data=response;
+            console.log("POST call in error", response);
+          },
+          () => {
+            console.log("The POST observable is now completed.");
+    });
+
+
+  }
+
   
 
 }

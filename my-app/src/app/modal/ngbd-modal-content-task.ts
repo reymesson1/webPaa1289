@@ -13,6 +13,8 @@ import {RestapiService} from '../restapi.service';
 export class NgbdModalContentTask {
   @Input() name;
   @Input() nameurl;
+  fileToUpload: File = null;
+
 
   constructor(public restapiservice : RestapiService, private router : Router, public activeModal: NgbActiveModal) { }
 
@@ -21,6 +23,12 @@ export class NgbdModalContentTask {
     // this.restapiservice.addDetail(event, this.name);    
     this.restapiservice.addTask(event, this.name, this.nameurl);  
   
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.restapiservice.uploadFile(this.fileToUpload);
+    console.log(this.fileToUpload);
   }
 
 }
