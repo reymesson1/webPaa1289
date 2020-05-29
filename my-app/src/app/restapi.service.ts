@@ -68,9 +68,9 @@ export class RestapiService {
       (val) => {
           console.log("POST call successful value returned in body",val);
 
-          val.map(res=>{
-            this.users.push(res);
-          })
+          // val.map(res=>{
+          //   this.users.push(res);
+          // })
                     
       },
       response => {
@@ -269,6 +269,27 @@ export class RestapiService {
     formData.append('file', event, event.name);
 
     this.http.post("http://localhost:8080/uploadtask/",
+    formData)
+    .subscribe(
+          (val) => {
+              console.log("POST call successful value returned in body",val);
+          },
+          response => {
+            this.data=response;
+            console.log("POST call in error", response);
+          },
+          () => {
+            console.log("The POST observable is now completed.");
+    });
+
+
+  }
+  uploadFileExcel(event){
+
+    const formData: FormData = new FormData();
+    formData.append('file', event, event.name);
+
+    this.http.post("http://localhost:8080/uploadexcel/",
     formData)
     .subscribe(
           (val) => {

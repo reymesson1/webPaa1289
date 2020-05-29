@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {RestapiService} from '../restapi.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public restapiservice : RestapiService, private router : Router) { }
 
   ngOnInit(): void {
   }
+
+  logOff(){
+    this.restapiservice.logout();
+    this.router.navigateByUrl('/home');
+  }
+
+  viewCourse(){
+
+    this.router.navigateByUrl('/profile');
+  }
+
 
 }
