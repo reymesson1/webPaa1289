@@ -22,7 +22,7 @@ import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { AreapersonalComponent } from './areapersonal/areapersonal.component';
-
+import { NgbdModalContentBulkUpload } from './modal/ngbd-modal-content-bulkupload';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { AreapersonalComponent } from './areapersonal/areapersonal.component';
     NgbdModalContentEdit,
     NgbdModalContentTask,
     NgbdModalContentEditTask,
+    NgbdModalContentBulkUpload,
     MisCursosComponent,
     ProfileComponent,
     CalificacionesComponent,
@@ -53,6 +54,6 @@ import { AreapersonalComponent } from './areapersonal/areapersonal.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask, NgbdModalContentEditTask]
+  entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask, NgbdModalContentEditTask,NgbdModalContentBulkUpload]
 })
 export class AppModule { }
