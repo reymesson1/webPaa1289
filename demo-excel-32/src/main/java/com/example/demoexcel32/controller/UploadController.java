@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demoexcel32.service.UploadService;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -29,7 +30,9 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -41,6 +44,7 @@ import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -293,8 +297,6 @@ public class UploadController {
                     Stream<Cell> cellStream = StreamSupport.stream(row.spliterator(),false);
                     List<String> cellVals =	cellStream.map(cell->{
                             String cellVal = cell.getStringCellValue();
-//                            System.out.println(cellVal);
-
                             return cellVal;
                     })
                     .collect(Collectors.toList());
@@ -303,11 +305,11 @@ public class UploadController {
                     System.out.println(cellVals.get(0));
 
                     Qualification q = new Qualification();
-                    q.id = "1";
-                    q.actividad = cellVals.get(0);
-                    q.calificacion = cellVals.get(1);
-                    q.student = "dddsd12313ffd";
-                    q.creator = "132klj23ljdsd";
+                    q.setId("1");
+                    q.setActividad(cellVals.get(0));
+                    q.setCalificacion(cellVals.get(1));
+                    q.setStudent("dddsd12313ffd");
+                    q.setCreator("132klj23ljdsd");
                     qualifications.add(q);
 
             });
@@ -320,6 +322,19 @@ public class UploadController {
         @RequestMapping(value = "/qualification", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
         public List<Qualification> getQualification(@RequestBody String str){
             
+            return qualifications;
+        }
+        
+        @CrossOrigin(origins="http://localhost:4200")
+        @RequestMapping(value = "/download/customers.xlsx", method = RequestMethod.GET)
+        public void downloadCsv(HttpServletResponse response) throws IOException {
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment; filename=customers.xlsx");
+            ByteArrayInputStream stream = ExcelFileExporter.contactListToExcelFile(createTestData());
+            IOUtils.copy(stream, response.getOutputStream());
+        }
+
+	private List<Qualification> createTestData(){
             return qualifications;
         }
         
