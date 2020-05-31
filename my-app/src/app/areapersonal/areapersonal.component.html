@@ -16,8 +16,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let quali of qualifications; let i = index;" >
-      <th>{{i}}</th>
+    <tr *ngFor="let quali of qualifications | slice:1; let i = index;" >
+      <th>{{i+1}}</th>
       <td>{{quali.fecha}}</td>
       <td>{{quali.actividad}}</td>
       <td>{{quali.calificacion}}</td>
