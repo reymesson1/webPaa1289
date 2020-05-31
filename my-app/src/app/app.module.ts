@@ -20,6 +20,8 @@ import { NgbdModalContentTask } from './modal/ngbd-modal-content-task';
 import { NgbdModalContentEditTask } from './modal/ngbd-modal-content-edit-task';
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CalificacionesComponent } from './calificaciones/calificaciones.component';
+import { AreapersonalComponent } from './areapersonal/areapersonal.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ProfileComponent } from './profile/profile.component';
     NgbdModalContentTask,
     NgbdModalContentEditTask,
     MisCursosComponent,
-    ProfileComponent
+    ProfileComponent,
+    CalificacionesComponent,
+    AreapersonalComponent
   ],
   imports: [
     BrowserModule,

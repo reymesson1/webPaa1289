@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<app-jumbotron></app-jumbotron>
+
+<app-navbar-bottom></app-navbar-bottom>
+
+<app-breadcrumb></app-breadcrumb>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Actividad</th>
+      <th scope="col">Calificacion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let quali of qualifications; let i = index;" >
+      <th>{{i}}</th>
+      <td>{{quali.fecha}}</td>
+      <td>{{quali.actividad}}</td>
+      <td>{{quali.calificacion}}</td>
+    </tr>
+    </tbody>
+</table>

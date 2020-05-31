@@ -15,6 +15,7 @@ export class RestapiService {
   users: Master[] = [];
   details: Detail[] = [];
   tasks: Task[] = [];
+  qualifications: Qualification[] = [];
 
   constructor(private http:HttpClient,private router : Router) {}
 
@@ -306,6 +307,33 @@ export class RestapiService {
 
   }
 
+  getQualification(){
+
+    this.http.post("http://localhost:8080/qualification/",
+    {
+      "id": "1",
+      "created" : "",
+      "creator": localStorage.token
+    })
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",val);
+            // this.qualifications = val;
+                val.map(res=>{
+                    this.qualifications.push(res);
+                })
+
+        },
+        response => {
+          this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
+
+  }
+
   
 
 }
@@ -325,4 +353,13 @@ export interface Task {
   id: string;
   name: string;
   creator: string;
+}
+export interface Qualification {
+   id : String;
+   fecha : String;
+   actividad : String;
+   calificacion : String;
+   student : String;
+   created : String;
+   creator : String;
 }
