@@ -303,7 +303,7 @@ public class UploadController {
                     System.out.println(cellVals.get(0));
 
                     Qualification q = new Qualification();
-                    q.id = "4";
+                    q.id = "1";
                     q.actividad = cellVals.get(0);
                     q.calificacion = cellVals.get(1);
                     q.student = "dddsd12313ffd";
