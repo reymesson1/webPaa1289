@@ -43,7 +43,7 @@
             <div class="row">
               <br/>
               <div class="col-md-10">
-                <li class="list-group-item">{{detail.name}}</li>
+                <li class="list-group-item" (click)="viewDetail(this.id,user.id,detail.id)"  >{{detail.name}}</li>
               </div>
               <div class="col-md-1">
                 <button type="button" style="text-align:center;" (click)="openTaskEdit(user.id, detail.id)" class="list-group-item"><i class="fa fa-edit fa-1x" aria-hidden="true"></i></button> 

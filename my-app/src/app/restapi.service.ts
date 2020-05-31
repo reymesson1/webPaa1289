@@ -318,7 +318,7 @@ export class RestapiService {
     .subscribe(
         (val) => {
             console.log("POST call successful value returned in body",val);
-            // this.qualifications = val;
+            this.qualifications = val;
                 val.map(res=>{
                     this.qualifications.push(res);
                 })

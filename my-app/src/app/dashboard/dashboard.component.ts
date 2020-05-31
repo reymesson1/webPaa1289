@@ -7,7 +7,7 @@ import { NgbdModalContentTask } from '../modal/ngbd-modal-content-task';
 import { NgbdModalContentEditTask } from '../modal/ngbd-modal-content-edit-task';
 import { RestapiService, Master } from '../restapi.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   id:any;
   data : Master[] = [];
 
-  constructor(private modalService: NgbModal, public restapiservice : RestapiService, public route : ActivatedRoute) { }
+  constructor(private router : Router,private modalService: NgbModal, public restapiservice : RestapiService, public route : ActivatedRoute) { }
 
   ngOnInit() {
     this.users = this.restapiservice.users;
@@ -73,6 +73,11 @@ export class DashboardComponent implements OnInit {
   removeDetail(masterId:String, detailId:String){
     
     this.restapiservice.removeDetail(masterId, detailId);
+  }
+  viewDetail(idModulo:String,idCurso:String,idTask:String){
+
+    console.log(idModulo + " " + idCurso + " " + idTask);
+    this.router.navigateByUrl('/task/'+idModulo+'/'+idCurso+'/'+idTask);    
   }
 
 }

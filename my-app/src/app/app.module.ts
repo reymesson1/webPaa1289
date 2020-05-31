@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { AreapersonalComponent } from './areapersonal/areapersonal.component';
 import { NgbdModalContentBulkUpload } from './modal/ngbd-modal-content-bulkupload';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NgbdModalContentBulkUpload } from './modal/ngbd-modal-content-bulkuploa
     MisCursosComponent,
     ProfileComponent,
     CalificacionesComponent,
-    AreapersonalComponent
+    AreapersonalComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
