@@ -31,9 +31,9 @@ export class DashboardComponent implements OnInit {
     });
      console.log(this.id);
     //  debugger;
-     this.users = this.restapiservice.users.filter(data=>
-       data.id==this.id
-     )[0]
+    //  this.users = this.restapiservice.users.filter(data=>
+    //    data.id==this.id
+    //  )[0]
 
    }
 
