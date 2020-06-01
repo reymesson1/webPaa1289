@@ -13,6 +13,9 @@ export class TaskComponent implements OnInit {
   idModulo:any;
   idTask:any;
   data: Task[] = [];
+  exam: any[] = [];
+  current: any = 0;
+  next: any = 1;
 
   constructor(private router : Router, public restapiservice : RestapiService, public route : ActivatedRoute) { }
 
@@ -23,18 +26,31 @@ export class TaskComponent implements OnInit {
       this.idTask = params['idtask'];
      });
 
-    // this.data = this.restapiservice.users.filter(res=>
+    this.data = this.restapiservice.users.filter(res=>
 
-    //   res.id==this.idCurso
-    // )[0].details.filter(res2=>
+      res.id==this.idCurso
+    )[0].details.filter(res2=>
       
-    //   res2.id==this.idModulo
-    // )[0].tasks.filter(res3=>
+      res2.id==this.idModulo
+    )[0].tasks.filter(res3=>
       
-    //   res3.id==this.idTask
-    // )[0]
+      res3.id==this.idTask
+    )[0]
 
-     console.log(this.data);
+    this.exam = this.data.exams[0];
+
+    console.log(this.data);
+  }
+
+  currentFunc(){
+  
+    this.current--;    
+    this.next--;    
+  }
+  nextFunc(){
+  
+    this.current++;    
+    this.next++;    
   }
 
 }

@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {RestapiService} from '../restapi.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbdModalContentBulkUpload } from '../modal/ngbd-modal-content-bulkupload';
+import { NgbdModalContentBulkUploadExams } from '../modal/ngbd-modal-content-bulkupload-exams';
 
 
 @Component({
@@ -22,8 +23,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  open() {
+  openQualifications() {
     const modalRef = this.modalService.open(NgbdModalContentBulkUpload);
+    modalRef.componentInstance.name = "Bulkupload";
+    modalRef.componentInstance.detailId = "";
+  }
+  openExams() {
+    const modalRef = this.modalService.open(NgbdModalContentBulkUploadExams);
     modalRef.componentInstance.name = "Bulkupload";
     modalRef.componentInstance.detailId = "";
   }

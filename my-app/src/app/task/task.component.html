@@ -5,15 +5,60 @@
 
 <app-breadcrumb></app-breadcrumb>
 
-<div class="container">
+
+<div *ngIf="!exam" class="container">
+        <div class="row">
+        
+            <h1>{{data.name}}</h1>
+                
+        </div>      
+</div>
+
+<div *ngIf="exam" class="container">
+    <br/>
     <div class="row">
         
-        <h1>{{data.name}}</h1>
+        <!-- <h1 *ngIf="exam" >{{data.name}}</h1> -->
+        <h1>{{exam.name}}</h1>
         
     </div>
+    <br/>
+    <!-- <div *ngFor="let question of exam.questions | slice:0:1"> -->
+    <!-- <div *ngFor="let question of exam.questions | slice:1:2"> -->
+    <div *ngFor="let question of exam.questions | slice:current:next">
+
+        <div class="row">
+
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <h2 >{{question.name}}</h2>
+            </div>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="row">
+            <div class="col-md-4 offset-2">
+                <div *ngFor="let answer of question.answers" class="row">
+                    <p>{{answer.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
     <div class="row">
-
-        
-
+        <div class="col-md-3">
+            <button class="btn btn-danger btn-lg" *ngIf="current!=0" (click)="currentFunc()" >Back</button>
+        </div>
+        <div class="col-md-4 offset-5">
+            <button class="btn btn-success btn-lg" (click)="nextFunc()" >Next</button>
+        </div>
     </div>
+    <br/>
+    <br/>
+    <br/>
 </div>

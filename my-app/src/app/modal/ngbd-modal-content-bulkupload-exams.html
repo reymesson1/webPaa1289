@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title">Bulkupload</h4>
+<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">            
+                    <div class="row">
+                        <a style="text-align:center;" href="http://localhost:8080/download/customers.xlsx">Download Template</a>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <input class="form-control" type="file" placeholder="file" name="file" id="file"  (change)="handleFileInput($event.target.files)"/>
+                    </div>
+                <br/>
+                <div class="modal-footer">
+                        <div class="col-md-offset-5">
+                            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+                        </div>
+                        <div class="col-md-offset-10">
+                            <button type="submit" class="col-md-12 btn btn-primary">Save</button>
+                        </div>        
+                </div>
+        </div>
+    </div>
+</div>

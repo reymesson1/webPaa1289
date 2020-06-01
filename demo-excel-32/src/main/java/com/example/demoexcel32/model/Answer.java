@@ -13,14 +13,16 @@ import java.util.List;
  *
  * @author Rey Messon
  */
-public class Task {
-
+public class Answer {
+    
     private String id = "";
     private Date date = new Date();
     private String name = "";
-    private List<Exam> exams = new ArrayList<Exam>();
-    private String fileName = "";
+    private int points = 0;
+    private String student = "";
+    private Date created = new Date();
     private String creator = "";
+ 
 
     /**
      * @return the id
@@ -63,7 +65,49 @@ public class Task {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    /**
+     * @return the points
+     */
+    public int getPoints() {
+        return points;
+    }
+
+    /**
+     * @param points the points to set
+     */
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    /**
+     * @return the student
+     */
+    public String getStudent() {
+        return student;
+    }
+
+    /**
+     * @param student the student to set
+     */
+    public void setStudent(String student) {
+        this.student = student;
+    }
+
+    /**
+     * @return the created
+     */
+    public Date getCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     /**
      * @return the creator
      */
@@ -77,36 +121,6 @@ public class Task {
     public void setCreator(String creator) {
         this.creator = creator;
     }
-    
-        /**
-     * @return the exams
-     */
-    public List<Exam> getExams() {
-        return exams;
-    }
-
-    /**
-     * @param exams the exams to set
-     */
-    public void setExams(List<Exam> exams) {
-        this.exams = exams;
-    }
-
-    /**
-     * @return the fileName
-     */
-    public String getFileName() {
-        return fileName;
-    }
-
-    /**
-     * @param fileName the fileName to set
-     */
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-
     
     
 }

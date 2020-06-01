@@ -18,11 +18,12 @@ import { NgbdModalContentDetail } from './modal/ngbd-modal-content-detail';
 import { NgbdModalContentEdit } from './modal/ngbd-modal-content-edit';
 import { NgbdModalContentTask } from './modal/ngbd-modal-content-task';
 import { NgbdModalContentEditTask } from './modal/ngbd-modal-content-edit-task';
+import { NgbdModalContentBulkUpload } from './modal/ngbd-modal-content-bulkupload';
+import { NgbdModalContentBulkUploadExams } from './modal/ngbd-modal-content-bulkupload-exams';
 import { MisCursosComponent } from './mis-cursos/mis-cursos.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { AreapersonalComponent } from './areapersonal/areapersonal.component';
-import { NgbdModalContentBulkUpload } from './modal/ngbd-modal-content-bulkupload';
 import { TaskComponent } from './task/task.component';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { TaskComponent } from './task/task.component';
     NgbdModalContentTask,
     NgbdModalContentEditTask,
     NgbdModalContentBulkUpload,
+    NgbdModalContentBulkUploadExams,
     MisCursosComponent,
     ProfileComponent,
     CalificacionesComponent,
@@ -56,6 +58,6 @@ import { TaskComponent } from './task/task.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask, NgbdModalContentEditTask,NgbdModalContentBulkUpload]
+  entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask, NgbdModalContentEditTask,NgbdModalContentBulkUpload, NgbdModalContentBulkUploadExams]
 })
 export class AppModule { }

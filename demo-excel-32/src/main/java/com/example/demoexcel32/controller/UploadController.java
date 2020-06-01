@@ -7,9 +7,12 @@ package com.example.demoexcel32.controller;
 
 import com.example.demoexcel32.model.Master;
 import com.example.demoexcel32.model.Detail;
+import com.example.demoexcel32.model.Exam;
 import com.example.demoexcel32.model.Task;
 import com.example.demoexcel32.model.User;
+import com.example.demoexcel32.model.Answer;
 import com.example.demoexcel32.model.Qualification;
+import com.example.demoexcel32.model.Question;
 import java.util.List;
 import java.util.Map;
 
@@ -104,6 +107,61 @@ public class UploadController {
             t.setId("1");
             t.setName("Task 1");
             t.setCreator("3131938139183sfdfdsf");
+                List<Exam> exams = new ArrayList<Exam>();
+                        Exam e = new Exam();                        
+                        e.setId("1");
+                        e.setName("Exam 1");
+                            List<Question> questions = new ArrayList<Question>();
+//                              Question #1                                            
+                                Question q = new Question();
+                                q.setId("1");
+                                q.setName("¿Qué superpoder tendrías?");
+                                    List<Answer> answers = new ArrayList<Answer>();
+                                    Answer a = new Answer();
+                                    a.setId("1");
+                                    a.setName("a) Superman");
+                                    Answer a2 = new Answer();
+                                    a2.setId("2");
+                                    a2.setName("b) Spiderman");
+                                    Answer a3 = new Answer();
+                                    a3.setId("4");
+                                    a3.setName("c) Ironman");
+                                    Answer a4 = new Answer();
+                                    a4.setId("4");
+                                    a4.setName("d) Hurk");
+                                    answers.add(a);
+                                    answers.add(a2);
+                                    answers.add(a3);
+                                    answers.add(a4);
+                                q.setAnswers(answers);
+//                              Question #2                                            
+                                Question q2 = new Question();
+                                q2.setId("2");
+                                q2.setName("¿Si sólo pudieras tener un hobby, ¿cuál sería?");
+                                    List<Answer> answers2 = new ArrayList<Answer>();
+                                    Answer aa = new Answer();
+                                    aa.setId("1");
+                                    aa.setName("a) Jugar");
+                                    Answer aa2 = new Answer();
+                                    aa2.setId("2");
+                                    aa2.setName("b) Leer");
+                                    Answer aa3 = new Answer();
+                                    aa3.setId("4");
+                                    aa3.setName("c) Viajar");
+                                    Answer aa4 = new Answer();
+                                    aa4.setId("4");
+                                    aa4.setName("d) Dormir");
+                                    answers2.add(aa);
+                                    answers2.add(aa2);
+                                    answers2.add(aa3);
+                                    answers2.add(aa4);
+                                q2.setAnswers(answers2);                                
+//                        Question #3                                
+                            questions.add(q);
+                            questions.add(q2);
+                        e.setQuestions(questions);
+                    exams.add(e);
+            t.setExams(exams);
             Task t2 = new Task();
             t2.setId("2");
             t2.setName("Task 2");
@@ -277,6 +335,50 @@ public class UploadController {
         @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/uploadexcel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
         public void uploadFileExcel(@RequestParam("file") MultipartFile file) throws IOException {
+            
+            Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
+
+            try (OutputStream os = Files.newOutputStream(filepath)) {
+                os.write(file.getBytes());
+            }        
+
+            File files = new File("C:/folderA/"+file.getOriginalFilename());
+
+            Workbook workbook = WorkbookFactory.create(files);
+
+            Sheet sheet = workbook.getSheetAt(0);
+            
+            Stream<Row> rowStream = StreamSupport.stream(sheet.spliterator(), false);
+
+            rowStream.forEach(row->{
+
+                    Stream<Cell> cellStream = StreamSupport.stream(row.spliterator(),false);
+                    List<String> cellVals =	cellStream.map(cell->{
+                            String cellVal = cell.getStringCellValue();
+                            return cellVal;
+                    })
+                    .collect(Collectors.toList());
+
+                    System.out.println(cellVals);
+                    System.out.println(cellVals.get(0));
+
+                    Qualification q = new Qualification();
+                    q.setId("1");
+                    q.setActividad(cellVals.get(0));
+                    q.setCalificacion(cellVals.get(1));
+                    q.setStudent("dddsd12313ffd");
+                    q.setCreator("132klj23ljdsd");
+                    qualifications.add(q);
+
+            });
+
+            System.out.println(file.getOriginalFilename());
+
+        }
+        
+        @CrossOrigin(origins="http://localhost:4200")
+        @RequestMapping(value = "/uploadexcelexams", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+        public void uploadFileExcelExams(@RequestParam("file") MultipartFile file) throws IOException {
             
             Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
 
