@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +25,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Rey Messon
  */
+@Service
 public class MasterService {
     
     public List<Master> master = new ArrayList<Master>();
     public List<Qualification> qualifications = new ArrayList<Qualification>();
-    List<Exam> exams = new ArrayList<Exam>();
-    List<Question> questions = new ArrayList<Question>();
+    public List<Exam> exams = new ArrayList<Exam>();
+    public List<Question> questions = new ArrayList<Question>();
     public int counter = 0;
-    
+            
     public List<Master> getMasterList(){
     
         return master;
@@ -44,7 +46,7 @@ public class MasterService {
         t.setId("1");
         t.setName("Task 1");
         t.setCreator("3131938139183sfdfdsf");
-        t.setExams(exams);//ponle examen a este task
+        t.setExams(this.exams);//ponle examen a este task
         Task t2 = new Task();
         t2.setId("2");
         t2.setName("Task 2");
@@ -176,10 +178,15 @@ public class MasterService {
         this.master.get(masterId-1).getDetails().get(detailId-1).getTasks().remove(taskId-1);
 
     }
-
-
     
-    
+    public List<Qualification> getQualification(String str){
 
+        return qualifications;
+    }
+    
+    public void checkIt(){
+    
+        System.out.println("I am here!");
+    }
     
 }
