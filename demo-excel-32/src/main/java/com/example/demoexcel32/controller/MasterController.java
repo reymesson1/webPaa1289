@@ -21,6 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import org.apache.commons.compress.utils.IOUtils;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  *
@@ -99,6 +104,19 @@ public class MasterController {
     public List<Qualification> getQualification(@RequestBody String str){
 
         return service.getQualification(str);
+    }
+    
+    @CrossOrigin(origins="http://localhost:4200")
+    @RequestMapping(value = "/download/customers.xlsx", method = RequestMethod.GET)
+    public void downloadCsv(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=customers.xlsx");
+        ByteArrayInputStream stream = ExcelFileExporter.contactListToExcelFile(createTestData());
+        IOUtils.copy(stream, response.getOutputStream());
+    }
+
+    private List<Qualification> createTestData(){
+        return service.qualifications;
     }
 
     

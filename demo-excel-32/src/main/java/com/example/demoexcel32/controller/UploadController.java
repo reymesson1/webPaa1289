@@ -89,14 +89,13 @@ public class UploadController {
                 
                 return contacts;
         }
-                        
-//        @CrossOrigin(origins="http://localhost:4200")
-//        @RequestMapping(value = "/masters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//
-//        public List<Master> getMaster() throws Exception{
-//            
-//            return master;
-//        }
+                                
+        @CrossOrigin(origins="http://localhost:4200")
+        @RequestMapping(value = "/uploadexcel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+        public void uploadFileExcel(@RequestParam("file") MultipartFile file) throws IOException {
+        
+            uploadService.uploadFileExcel(file);
+        }
                                 
         @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/uploadexcelexams", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

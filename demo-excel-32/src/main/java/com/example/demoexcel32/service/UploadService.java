@@ -9,6 +9,7 @@ package com.example.demoexcel32.service;
 import com.example.demoexcel32.controller.UploadController;
 import com.example.demoexcel32.model.Answer;
 import com.example.demoexcel32.model.Exam;
+import com.example.demoexcel32.model.Qualification;
 import com.example.demoexcel32.model.Question;
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +46,62 @@ public class UploadService {
     public UploadService(MasterService service){
         
         this.service=service;
+    }
+    
+    @CrossOrigin(origins="http://localhost:4200")
+    @RequestMapping(value = "/uploadtask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+
+        Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
+
+        try (OutputStream os = Files.newOutputStream(filepath)) {
+            os.write(file.getBytes());
+        }        
+        System.out.println(file.getOriginalFilename());
+    }
+    
+    @CrossOrigin(origins="http://localhost:4200")
+    @RequestMapping(value = "/uploadexcel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void uploadFileExcel(@RequestParam("file") MultipartFile file) throws IOException {
+            
+            Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
+
+            try (OutputStream os = Files.newOutputStream(filepath)) {
+                os.write(file.getBytes());
+            }        
+
+            File files = new File("C:/folderA/"+file.getOriginalFilename());
+
+            Workbook workbook = WorkbookFactory.create(files);
+
+            Sheet sheet = workbook.getSheetAt(0);
+            
+            Stream<Row> rowStream = StreamSupport.stream(sheet.spliterator(), false);
+
+            rowStream.forEach(row->{
+
+                    Stream<Cell> cellStream = StreamSupport.stream(row.spliterator(),false);
+                    List<String> cellVals =	cellStream.map(cell->{
+                            String cellVal = cell.getStringCellValue();
+                            return cellVal;
+                    })
+                    .collect(Collectors.toList());
+
+                    System.out.println(cellVals);
+                    System.out.println(cellVals.get(0));
+
+                    Qualification q = new Qualification();
+                    q.setId("1");
+                    q.setActividad(cellVals.get(0));
+                    q.setCalificacion(cellVals.get(1));
+                    q.setStudent("dddsd12313ffd");
+                    q.setCreator("132klj23ljdsd");
+                    service.qualifications.add(q);
+
+            });
+
+            System.out.println(file.getOriginalFilename());
+
     }
 
     public void uploadFileExcelExams(@RequestParam("file") MultipartFile file) throws IOException {
