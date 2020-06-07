@@ -13,6 +13,7 @@ import com.example.demoexcel32.model.User;
 import com.example.demoexcel32.model.Answer;
 import com.example.demoexcel32.model.Qualification;
 import com.example.demoexcel32.model.Question;
+import com.example.demoexcel32.service.MasterService;
 import java.util.List;
 import java.util.Map;
 
@@ -54,24 +55,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class UploadController {
-	
-	private final UploadService uploadService;
-        public List<Master> master = new ArrayList<Master>();
-        public List<Qualification> qualifications = new ArrayList<Qualification>();
-        List<Exam> exams = new ArrayList<Exam>();
-        List<Question> questions = new ArrayList<Question>();
 
-
-        public int counter = 0;
-	
-	public UploadController(UploadService uploadService) {
-		this.uploadService = uploadService;
-	}
-
-	@PostMapping("/upload")
-	public void upload(@RequestParam("file") MultipartFile file) throws Exception{
-		uploadService.upload(file);
-	}
+        UploadService uploadService;
+        
+        public UploadController(UploadService uploadService){
+            this.uploadService = uploadService;        
+        }
         
         @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/loading", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -99,150 +88,21 @@ public class UploadController {
                 }
                 
                 return contacts;
-        }                
-        
-                
-        @CrossOrigin(origins="http://localhost:4200")
-        @RequestMapping(value = "/uploadtask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-        public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-            
-            Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
-
-            try (OutputStream os = Files.newOutputStream(filepath)) {
-                os.write(file.getBytes());
-            }        
-            System.out.println(file.getOriginalFilename());
         }
-        
-        @CrossOrigin(origins="http://localhost:4200")
-        @RequestMapping(value = "/uploadexcel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-        public void uploadFileExcel(@RequestParam("file") MultipartFile file) throws IOException {
-            
-            Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
-
-            try (OutputStream os = Files.newOutputStream(filepath)) {
-                os.write(file.getBytes());
-            }        
-
-            File files = new File("C:/folderA/"+file.getOriginalFilename());
-
-            Workbook workbook = WorkbookFactory.create(files);
-
-            Sheet sheet = workbook.getSheetAt(0);
-            
-            Stream<Row> rowStream = StreamSupport.stream(sheet.spliterator(), false);
-
-            rowStream.forEach(row->{
-
-                    Stream<Cell> cellStream = StreamSupport.stream(row.spliterator(),false);
-                    List<String> cellVals =	cellStream.map(cell->{
-                            String cellVal = cell.getStringCellValue();
-                            return cellVal;
-                    })
-                    .collect(Collectors.toList());
-
-                    System.out.println(cellVals);
-                    System.out.println(cellVals.get(0));
-
-                    Qualification q = new Qualification();
-                    q.setId("1");
-                    q.setActividad(cellVals.get(0));
-                    q.setCalificacion(cellVals.get(1));
-                    q.setStudent("dddsd12313ffd");
-                    q.setCreator("132klj23ljdsd");
-                    qualifications.add(q);
-
-            });
-
-            System.out.println(file.getOriginalFilename());
-
-        }
-        
+                        
+//        @CrossOrigin(origins="http://localhost:4200")
+//        @RequestMapping(value = "/masters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//
+//        public List<Master> getMaster() throws Exception{
+//            
+//            return master;
+//        }
+                                
         @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/uploadexcelexams", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
         public void uploadFileExcelExams(@RequestParam("file") MultipartFile file) throws IOException {
-            
-            Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
 
-            try (OutputStream os = Files.newOutputStream(filepath)) {
-                os.write(file.getBytes());
-            }        
-
-            File files = new File("C:/folderA/"+file.getOriginalFilename());
-
-            Workbook workbook = WorkbookFactory.create(files);
-
-            Sheet sheet = workbook.getSheetAt(0);
-            
-            Stream<Row> rowStream = StreamSupport.stream(sheet.spliterator(), false);
-            
-            Exam e = new Exam();                        
-            e.setId("1");
-            e.setName("Exam 1");
-
-            rowStream.forEach(row->{
-
-                    Stream<Cell> cellStream = StreamSupport.stream(row.spliterator(),false);
-                    List<String> cellVals =	cellStream.map(cell->{
-                            String cellVal = cell.getStringCellValue();
-                            return cellVal;
-                    })
-                    .collect(Collectors.toList());
-
-                    System.out.println(cellVals);
-                    System.out.println(cellVals.get(0));
-                    
-//                              Question #1                                            
-                                Question q = new Question();
-                                q.setId("1");
-                                q.setName(cellVals.get(0));
-                                    List<Answer> answers = new ArrayList<Answer>();
-                                    Answer a = new Answer();
-                                    a.setId("1");
-                                    a.setName(cellVals.get(1));
-                                    Answer a2 = new Answer();
-                                    a2.setId("2");
-                                    a2.setName(cellVals.get(2));
-                                    Answer a3 = new Answer();
-                                    a3.setId("4");
-                                    a3.setName(cellVals.get(3));
-                                    Answer a4 = new Answer();
-                                    a4.setId("4");
-                                    a4.setName(cellVals.get(4));
-                                    answers.add(a);
-                                    answers.add(a2);
-                                    answers.add(a3);
-                                    answers.add(a4);
-                                q.setAnswers(answers);
-                            questions.add(q);
-
-            });
-            
-            e.setQuestions(questions);
-            exams.add(e);
-
-            System.out.println(file.getOriginalFilename());
-
+            uploadService.uploadFileExcelExams(file);
         }
-        
-        @CrossOrigin(origins="http://localhost:4200")
-        @RequestMapping(value = "/qualification", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-        public List<Qualification> getQualification(@RequestBody String str){
             
-            return qualifications;
-        }
-        
-        @CrossOrigin(origins="http://localhost:4200")
-        @RequestMapping(value = "/download/customers.xlsx", method = RequestMethod.GET)
-        public void downloadCsv(HttpServletResponse response) throws IOException {
-            response.setContentType("application/octet-stream");
-            response.setHeader("Content-Disposition", "attachment; filename=customers.xlsx");
-            ByteArrayInputStream stream = ExcelFileExporter.contactListToExcelFile(createTestData());
-            IOUtils.copy(stream, response.getOutputStream());
-        }
-
-	private List<Qualification> createTestData(){
-            return qualifications;
-        }
-        
 }
