@@ -14,6 +14,14 @@ public class User {
     private Integer userid;  
     private String username;   
     private String token;
+    
+    public User(){}
+    
+    public User(Integer userid, String username){
+        
+        this.userid = userid;
+        this.username = username;
+    }
   
     /**
      * @return the userid
