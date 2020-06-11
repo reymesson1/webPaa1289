@@ -19,5 +19,9 @@ export class BreadcrumbComponent implements OnInit {
 
     this.router.navigateByUrl('/');
   }
+  gotoCursos(){
+
+    this.router.navigateByUrl('/miscursos');
+  }
 
 }

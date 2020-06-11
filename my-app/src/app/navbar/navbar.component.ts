@@ -19,9 +19,13 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  viewCourse(){
+  viewProfile(){
 
     this.router.navigateByUrl('/profile');
+  }
+  viewCourse(){
+
+    this.router.navigateByUrl('/miscursos');
   }
 
 

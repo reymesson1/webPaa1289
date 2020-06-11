@@ -23,6 +23,12 @@ export class NavbarBottomComponent implements OnInit {
     this.router.navigateByUrl('/areapersonal');    
   }
 
+  gotoCursos(){
+
+    this.router.navigateByUrl('/miscursos');
+  }
+
+
 
 
 }
