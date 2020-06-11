@@ -13,9 +13,9 @@ export class NavbarBottomComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goTo(){
+  gotoHome(){
     
-    this.router.navigateByUrl('/areapersonal');    
+    this.router.navigateByUrl('/home');    
   }
 
 }

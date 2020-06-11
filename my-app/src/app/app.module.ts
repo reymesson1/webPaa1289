@@ -25,6 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { AreapersonalComponent } from './areapersonal/areapersonal.component';
 import { TaskComponent } from './task/task.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TaskComponent } from './task/task.component';
     ProfileComponent,
     CalificacionesComponent,
     AreapersonalComponent,
-    TaskComponent
+    TaskComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
