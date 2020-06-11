@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.restapiservice.isAuthenticated){
-      this.router.navigateByUrl('/miscursos');
+      this.router.navigateByUrl('/home');
     }
   }
 
