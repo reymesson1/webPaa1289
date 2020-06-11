@@ -18,4 +18,11 @@ export class NavbarBottomComponent implements OnInit {
     this.router.navigateByUrl('/home');    
   }
 
+  goTo(){
+    
+    this.router.navigateByUrl('/areapersonal');    
+  }
+
+
+
 }
