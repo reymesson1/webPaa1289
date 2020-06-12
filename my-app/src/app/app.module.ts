@@ -26,6 +26,7 @@ import { CalificacionesComponent } from './calificaciones/calificaciones.compone
 import { AreapersonalComponent } from './areapersonal/areapersonal.component';
 import { TaskComponent } from './task/task.component';
 import { LoginComponent } from './login/login.component';
+import { ShoppingListService } from './dashboard/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { LoginComponent } from './login/login.component';
     CalificacionesComponent,
     AreapersonalComponent,
     TaskComponent,
-    LoginComponent
+    LoginComponent    
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent],
   entryComponents: [NgbdModalContent, NgbdModalContentDetail, NgbdModalContentEdit, NgbdModalContentTask, NgbdModalContentEditTask,NgbdModalContentBulkUpload, NgbdModalContentBulkUploadExams]
 })

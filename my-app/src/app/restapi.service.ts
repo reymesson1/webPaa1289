@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import 'rxjs/Rx';
 import {Router} from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { create } from 'domain';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +13,13 @@ import { DatePipe } from '@angular/common';
 
 export class RestapiService {
 
+  ingredientsChanged = new Subject<Master[]>();
   data : String = "";
   TOKEN_KEY = 'token';
+  masters: Master[] = [
+    new Master("1","Cocina Basica",true, "2012-06-12"),
+    new Master("2","Cocina Basica 2",true, "2012-06-12")
+  ];
   users: Master[] = [];
   details: Detail[] = [];
   tasks: Task[] = [];
@@ -64,204 +72,44 @@ export class RestapiService {
 
   getMaster(){
 
-    this.http.get('http://localhost:8080/masters')
-    .subscribe(
-      (val) => {
-          console.log("POST call successful value returned in body",val);
-
-          val.map(res=>{
-            this.users.push(res);
-          })
-                    
-      },
-      response => {
-        this.data=response;
-        console.log("POST call in error", response);
-      },
-      () => {
-        console.log("The POST observable is now completed.");
-  });
-
+    return this.masters.slice();
   }
 
   addDetail(event,id){
 
-    this.http.post("http://localhost:8080/adddetail/",
-    {
-      "id": id,
-      "name": event.value.modulo, 
-      "active": true,
-      "created" : "",
-      "creator": localStorage.token
-    })
-    .subscribe(
-        (val) => {
-            console.log("POST call successful value returned in body",val);
-        },
-        response => {
-          this.data=response;
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-  });
-}
+  }
 
   addMaster(event){ 
 
-    this.http.post("http://localhost:8080/addmaster/",
-    {
-      "name": event.value.modulo,
-      "active": true,
-      "creator": localStorage.token
+    console.log(event.value);
 
-    })
-    .subscribe(
-        (val) => {
-            console.log("POST call successful value returned in body",val);
-        },
-        response => {
-          this.data=response;
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-    });
+    var newItem : Master =  new Master("1","Cocina Basica 3",true, "2012-06-12");
 
-    return of(this.data);
+    // this.masters.push(  newItem  );
+    this.masters.push(  newItem  );
+    
+
+    this.ingredientsChanged.next(this.masters.slice());  
 
   }
 
   removeDetail(masterId, detailId){
 
-    this.http.post("http://localhost:8080/removemaster/",
-    {
-      "masterid": masterId,
-      "detailid": detailId,
-      "creator": localStorage.token
-
-    })
-    .subscribe(
-        (val) => {
-            console.log("POST call successful value returned in body",val);
-        },
-        response => {
-          this.data=response;
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-    });
-
-    console.log(masterId + " " + detailId );
+  
   }
   editDetail(event,masterId, detailId){
 
-    this.http.post("http://localhost:8080/editdetail/",
-    {
-      "name": event.value.modulo,
-      "masterid": masterId,
-      "detailid": detailId,
-      "creator": localStorage.token
-
-    })
-    .subscribe(
-        (val) => {
-          console.log("POST call successful value returned in body",val);
-        },
-        response => {
-          this.data=response;
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-    });
-
-    console.log(masterId + " " + detailId );
+  
   }
   addTask(event,id,idUrl){
 
-    console.log(id);
-    console.log(idUrl);
-    console.log(event.value.modulo);
 
-    this.http.post("http://localhost:8080/addtask/",
-    {
-      "id": id,
-      "idModulo": idUrl,
-      "name": event.value.modulo, 
-      "active": true,
-      "created" : "",
-      "creator": localStorage.token
-    })
-    .subscribe(
-          (val) => {
-              console.log("POST call successful value returned in body",val);
-          },
-          response => {
-            this.data=response;
-            console.log("POST call in error", response);
-          },
-          () => {
-            console.log("The POST observable is now completed.");
-    });
   }
   editTask(event,idUrl, idModulo, idTask){
-    // this.restapiservice.editTask(event, this.nameurl, this.name , this.nameTask);    
 
-    console.log(idUrl);
-    console.log(idModulo);
-    console.log(idTask);
-    console.log(event.value.modulo);
-
-    this.http.post("http://localhost:8080/edittask/",
-    {
-      "idCurso": idUrl,
-      "idModulo": idModulo,
-      "idTask": idTask,
-      "name": event.value.modulo, 
-      "active": true,
-      "created" : "",
-      "creator": localStorage.token
-    })
-    .subscribe(
-          (val) => {
-              console.log("POST call successful value returned in body",val);
-          },
-          response => {
-            this.data=response;
-            console.log("POST call in error", response);
-          },
-          () => {
-            console.log("The POST observable is now completed.");
-    });
   }
   removeTask(idUrl, idModulo, idTask){
-    // this.restapiservice.editTask(event, this.nameurl, this.name , this.nameTask);    
 
-    console.log(idUrl);
-    console.log(idModulo);
-    console.log(idTask);
-
-    this.http.post("http://localhost:8080/removetask/",
-    {
-      "idCurso": idUrl,
-      "idModulo": idModulo,
-      "idTask": idTask,
-      "created" : "",
-      "creator": localStorage.token
-    })
-    .subscribe(
-          (val) => {
-              console.log("POST call successful value returned in body",val);
-          },
-          response => {
-            this.data=response;
-            console.log("POST call in error", response);
-          },
-          () => {
-            console.log("The POST observable is now completed.");
-    });
   }
 
   uploadFile(event){
@@ -330,40 +178,26 @@ export class RestapiService {
 
   getQualification(){
 
-    this.http.post("http://localhost:8080/qualification/",
-    {
-      "id": "1",
-      "created" : "",
-      "creator": localStorage.token
-    })
-    .subscribe(
-        (val) => {
-            console.log("POST call successful value returned in body",val);
-            // this.qualifications = val;
-                val.map(res=>{
-                    this.qualifications.push(res);
-                })
-
-        },
-        response => {
-          this.data=response;
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-    });
-
   }
 
   
 
 }
 
-export interface Master {
+export class Master {
   id: string;
   name: string;
   active: boolean;
   creator: string;
+
+  constructor(id:string, name:string, active:boolean,creator:string){
+    
+    this.id = id;
+    this.name = name;
+    this.active = active;
+    this.creator = creator;
+  }
+
 }
 export interface Detail {
   id: string;

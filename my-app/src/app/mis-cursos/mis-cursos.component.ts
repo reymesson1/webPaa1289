@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 export class MisCursosComponent implements OnInit {
 
   users: Master[] = [];
+  masters: Master[] = [];
 
   constructor(private router : Router,private modalService: NgbModal, public restapiservice : RestapiService) { }
 
@@ -22,6 +23,11 @@ export class MisCursosComponent implements OnInit {
 
     this.users = this.restapiservice.users;
     this.restapiservice.getMaster();
+
+    this.users = this.restapiservice.getMaster();
+
+    console.log(this.users);
+    console.log(this.masters);
   }
 
   open() {

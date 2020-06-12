@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RestapiService} from '../restapi.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,17 @@ export class HomeComponent implements OnInit {
 
   constructor(public restapiservice : RestapiService, private router : Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(){
 
+    const myNumbers = Observable.interval(1000);
+  
+    myNumbers.subscribe(
+    
+      (number: number)=>{
+      
+        console.log(number);
+      }
+    
+    )
+  }
 }

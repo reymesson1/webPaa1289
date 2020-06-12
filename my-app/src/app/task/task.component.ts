@@ -26,16 +26,16 @@ export class TaskComponent implements OnInit {
       this.idTask = params['idtask'];
      });
 
-    this.data = this.restapiservice.users.filter(res=>
+    // this.data = this.restapiservice.users.filter(res=>
 
-      res.id==this.idCurso
-    )[0].details.filter(res2=>
+    //   res.id==this.idCurso
+    // )[0].details.filter(res2=>
       
-      res2.id==this.idModulo
-    )[0].tasks.filter(res3=>
+    //   res2.id==this.idModulo
+    // )[0].tasks.filter(res3=>
       
-      res3.id==this.idTask
-    )[0]
+    //   res3.id==this.idTask
+    // )[0]
 
     this.exam = this.data.exams[0];
 
