@@ -23,17 +23,14 @@ export class DashboardComponent implements OnInit {
   constructor(private router : Router,private modalService: NgbModal, public restapiservice : RestapiService, public route : ActivatedRoute) { }
 
   ngOnInit() {
-    this.users = this.restapiservice.users;
-    this.restapiservice.getMaster();
 
     this.route.params.subscribe(params => {
      this.id = params['id'];
     });
-     console.log(this.id);
-    //  debugger;
-     this.users = this.restapiservice.users.filter(data=>
-       data.id==this.id
-     )[0]
+
+    this.users = this.restapiservice.getMaster().filter(data=>
+         data.id==this.id
+    )[0]
 
    }
 

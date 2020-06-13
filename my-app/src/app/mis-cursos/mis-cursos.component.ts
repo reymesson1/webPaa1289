@@ -20,8 +20,7 @@ export class MisCursosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.users = this.restapiservice.users;
-    this.restapiservice.getMaster();
+    this.users = this.restapiservice.getMaster();
   }
 
   open() {

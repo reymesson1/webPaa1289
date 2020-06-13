@@ -26,7 +26,8 @@ export class TaskComponent implements OnInit {
       this.idTask = params['idtask'];
      });
 
-    this.data = this.restapiservice.users.filter(res=>
+    this.data = this.restapiservice.getMaster().filter(res=>
+    // this.data = this.restapiservice.users.filter(res=>
 
       res.id==this.idCurso
     )[0].details.filter(res2=>
