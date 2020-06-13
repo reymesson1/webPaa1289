@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import 'rxjs/Rx';
 import {Router} from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { create } from 'domain';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -16,10 +15,8 @@ export class RestapiService {
   ingredientsChanged = new Subject<Master[]>();
   data : String = "";
   TOKEN_KEY = 'token';
-  masters: Master[] = [
-    new Master("1","Cocina Basica",true, "2012-06-12"),
-    new Master("2","Cocina Basica 2",true, "2012-06-12")
-  ];
+  // masters: Observable<Master[]>
+  masters: Master[] = [];
   users: Master[] = [];
   details: Detail[] = [];
   tasks: Task[] = [];
@@ -70,9 +67,9 @@ export class RestapiService {
 
   }
 
-  getMaster(){
+  getMaster() : Observable<Master[]>{
 
-    return this.masters.slice();
+    return Observable.of(this.masters);
   }
 
   addDetail(event,id){
@@ -83,13 +80,19 @@ export class RestapiService {
 
     console.log(event.value);
 
-    var newItem : Master =  new Master("1","Cocina Basica 3",true, "2012-06-12");
+    var newItem : Master =  new Master("3","Cocina Basica 3",true, "2012-06-12");
 
     // this.masters.push(  newItem  );
-    this.masters.push(  newItem  );
-    
+    // this.masters.push(  newItem  );
 
-    this.ingredientsChanged.next(this.masters.slice());  
+    // this.masters.subscribe(empList => empList.push(newItem))
+
+    // this.restapiservice.getMaster().subscribe(empList => this.users = empList)
+
+
+    console.log(this.masters);
+    
+    // this.ingredientsChanged.next(this.masters.slice());  
 
   }
 

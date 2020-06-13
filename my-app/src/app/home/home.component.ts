@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
-import {RestapiService} from '../restapi.service';
+import {RestapiService, Master} from '../restapi.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -17,15 +17,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(){
 
-    const myNumbers = Observable.interval(1000);
-  
-    myNumbers.subscribe(
-    
-      (number: number)=>{
-      
-        console.log(number);
+    this.restapiservice.getMaster().subscribe(
+
+      (items : Master[]) =>{
+         console.log(items);
       }
-    
     )
+
+    // const myNumbers = Observable.interval(1000);
+  
+    // myNumbers.subscribe(
+    
+    //   (number: number)=>{
+      
+    //     console.log(number);
+    //   }
+    
+    // )
   }
 }
