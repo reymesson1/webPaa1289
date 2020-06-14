@@ -28,7 +28,7 @@ export class MisCursosComponent implements OnInit {
       this.users = this.restapiservice.getMaster();            
       this.profile = this.restapiservice.getProfile();
 
-    }, 3000);
+    }, 1000);
   }
 
   open() {

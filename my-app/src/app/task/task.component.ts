@@ -39,7 +39,7 @@ export class TaskComponent implements OnInit {
     )[0]
 
     this.exam = this.data.exams[0];
-
+ 
     console.log(this.data);
   }
 

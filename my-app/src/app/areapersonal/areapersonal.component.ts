@@ -26,7 +26,7 @@ export class AreapersonalComponent implements OnInit {
       
       this.qualifications = this.restapiservice.getQualification();
 
-    }, 3000);
+    }, 1000);
 
   }
 
