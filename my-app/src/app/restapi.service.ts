@@ -128,9 +128,11 @@ export class RestapiService {
   }
   editTask(event, nameurl, modulo, nametask){
 
+    this.masters[nameurl-1].details[modulo-1].tasks[nametask-1].name = event.value.modulo;
   }
   removeTask(idUrl, idModulo, idTask){
 
+    this.masters[idUrl-1].details[idModulo-1].tasks.splice(idTask-1,1);
   }
 
   uploadFile(event){
@@ -202,6 +204,11 @@ export class RestapiService {
 
     
 
+  }
+
+  getProfile(){
+
+    return true;
   }
 
   

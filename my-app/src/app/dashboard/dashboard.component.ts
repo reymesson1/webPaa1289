@@ -8,6 +8,7 @@ import { NgbdModalContentEditTask } from '../modal/ngbd-modal-content-edit-task'
 import { RestapiService, Master } from '../restapi.service';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,7 +37,6 @@ export class DashboardComponent implements OnInit {
 
    ngAfterViewInit(){
 
-    console.log(this.users);
    }
    
   open() {

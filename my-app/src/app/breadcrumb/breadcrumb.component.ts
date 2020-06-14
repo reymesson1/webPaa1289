@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router';
 import {RestapiService} from '../restapi.service';
 
@@ -12,7 +12,13 @@ export class BreadcrumbComponent implements OnInit {
 
   constructor(public restapiservice : RestapiService, private router : Router) { }
 
+  @Input() name;
+
+
   ngOnInit(): void {
+
+    console.log("hello from dashboard "+name);
+ 
   }
 
   goToHome(){
