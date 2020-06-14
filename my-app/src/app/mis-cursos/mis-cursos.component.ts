@@ -21,8 +21,14 @@ export class MisCursosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.users = this.restapiservice.getMaster();
-    this.profile = this.restapiservice.getProfile();
+    this.restapiservice.getAPI("http://localhost:8080/masters");
+    
+    setTimeout(() => {
+      
+      this.users = this.restapiservice.getMaster();            
+      this.profile = this.restapiservice.getProfile();
+
+    }, 5000);
   }
 
   open() {

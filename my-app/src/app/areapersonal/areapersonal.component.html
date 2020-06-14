@@ -10,30 +10,70 @@
     <h1 > <i class="fa fa-user-circle" aria-hidden="true"></i>            </h1>
 
     <h1 class="display-4">Rey Messon</h1>
-    <!-- País: República Dominicana
-Ciudad: Santo Domingo
-Dirección de correo: reymesson@gmail.com -->
     <p class="lead">Pais: Republica Dominicana</p>
     <hr class="my-4">
     <p class="lead">Ciudad: Santo Domingo</p>
     <p class="lead">Direccion de correo: reymesson@gmail.com</p>
 </div>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Actividad</th>
-      <th scope="col">Calificacion</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let quali of qualifications | slice:1; let i = index;" >
-      <th>{{i+1}}</th>
-      <td>{{quali.fecha}}</td>
-      <td>{{quali.actividad}}</td>
-      <td>{{quali.calificacion}}</td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                    <div class="card-body">                            
+                            <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <input class="form-control" type="text" placeholder="Nombre del Modulo" name="modulo" ngModel #first="ngModel" />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                <label for="exampleFormControlSelect1">Example select</label>
+                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                  <option>4</option>
+                                                  <option>5</option>
+                                                </select>                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-4 offset-10">
+                                            <button class="btn btn-primary">Search</button>
+                                        </div>
+                                    </div>
+                            </form>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div></div>
+
+<br/>
+<div class="row">
+                
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Actividad</th>
+                    <th scope="col">Calificacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let quali of qualifications | slice:1; let i = index;" >
+                    <th>{{i+1}}</th>
+                    <td>{{quali.fecha}}</td>
+                    <td>{{quali.actividad}}</td>
+                    <td>{{quali.calificacion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

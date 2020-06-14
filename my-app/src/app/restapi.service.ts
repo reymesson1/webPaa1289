@@ -36,13 +36,8 @@ export class RestapiService {
     new Detail("1","Modulo 1",this.tasks,"Juan Perez")
   ];
 
-  masters: Master[] = [
+  masters: Master[] = [];
 
-    new Master("1", "Cocina Basica", true, this.details, "Juan Perez"),
-    new Master("2", "Cocina Basica 2", true, this.details, "Juan Perez"),
-    new Master("3", "Cocina Basica 3", true, this.details, "Juan Perez")
-
-  ];
   qualifications: Qualification[] = [];
 
   constructor(private http:HttpClient,private router : Router) {}
@@ -87,6 +82,35 @@ export class RestapiService {
     });
 
     return of(this.data);
+
+  }
+
+  getAPI(url:string){
+
+    this.http.get(url)
+    // this.http.get('http://localhost:8080/masters')
+      .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",val);
+
+            this.masters = val;
+            // val.map(res=>{
+            //   this.users.push(res);
+            // })
+                      
+        },
+        response => {
+          this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
+
+  }
+
+  postAPI(){
+
 
   }
 
@@ -201,8 +225,28 @@ export class RestapiService {
 
   getQualification(){
 
+    this.http.post("http://localhost:8080/qualification/",
+    {
+      "id": "1",
+      "created" : "",
+      "creator": localStorage.token
+    })
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",val);
+            // this.qualifications = val;
+                val.map(res=>{
+                    this.qualifications.push(res);
+                })
 
-    
+        },
+        response => {
+          this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
 
   }
 
