@@ -20,8 +20,14 @@ export class AreapersonalComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.restapiservice.getQualification();    
-    this.qualifications = this.restapiservice.qualifications; 
+    this.restapiservice.getAPIQualification();
+    
+    setTimeout(() => {  
+      
+      this.qualifications = this.restapiservice.getQualification();
+
+    }, 3000);
+
   }
 
 }

@@ -36,9 +36,9 @@ export class RestapiService {
     new Detail("1","Modulo 1",this.tasks,"Juan Perez")
   ];
 
-  masters: Master[] = [];
+  masters: any[] = [];
 
-  qualifications: Qualification[] = [];
+  qualifications: any[] = [];
 
   constructor(private http:HttpClient,private router : Router) {}
 
@@ -225,6 +225,11 @@ export class RestapiService {
 
   getQualification(){
 
+    return this.qualifications;
+  }
+
+  getAPIQualification(){
+
     this.http.post("http://localhost:8080/qualification/",
     {
       "id": "1",
@@ -233,12 +238,8 @@ export class RestapiService {
     })
     .subscribe(
         (val) => {
-            console.log("POST call successful value returned in body",val);
-            // this.qualifications = val;
-                val.map(res=>{
-                    this.qualifications.push(res);
-                })
-
+                console.log("POST call successful value returned in body",val);
+                this.qualifications = val
         },
         response => {
           this.data=response;
