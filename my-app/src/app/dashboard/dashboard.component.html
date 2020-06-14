@@ -15,7 +15,7 @@
 
         <app-jumbotron-bottom></app-jumbotron-bottom>
 
-        <div class="row">
+        <div *ngIf="profile" class="row">
           
           <div class="col-md-10 offset-10">
             <button class="btn btn-danger" (click)="openDetail(this.id)">Add Modulo</button>
@@ -31,13 +31,12 @@
           <div class="card-header">
             {{"Modulo " +  user.id + ":" }}
           </div>
-          <ul class="list-group list-group-flush">
+          <div class="row">
             <br/>
             <div class="col-md-10 offset-10">
               <button class="btn btn-danger" (click)="openTask(user.id)">Add Task</button>
             </div>
-            <br/>
-          </ul>
+          </div>
           <div *ngFor="let detail of user.tasks">
             <br/>
             <div class="row">

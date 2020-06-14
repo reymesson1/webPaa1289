@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   users: Master[] = [];
   id:any;
   data : Master[] = [];
+  profile : boolean;
 
   constructor(private router : Router,private modalService: NgbModal, public restapiservice : RestapiService, public route : ActivatedRoute) { }
 
@@ -32,6 +33,8 @@ export class DashboardComponent implements OnInit {
     this.users = this.restapiservice.getMaster().filter(data=>
          data.id==this.id
     )[0]
+
+    this.profile = this.restapiservice.getProfile();
 
    }
 

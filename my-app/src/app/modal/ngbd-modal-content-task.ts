@@ -14,9 +14,14 @@ export class NgbdModalContentTask {
   @Input() name;
   @Input() nameurl;
   fileToUpload: File = null;
-
+  profile : boolean;
 
   constructor(public restapiservice : RestapiService, private router : Router, public activeModal: NgbActiveModal) { }
+
+  ngOnInit(){
+
+    this.profile = this.restapiservice.getProfile();
+  }  
 
   onSubmit(event){
     console.log(this.name);
@@ -27,8 +32,15 @@ export class NgbdModalContentTask {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    this.restapiservice.uploadFile(this.fileToUpload);
+    this.restapiservice.uploadFileExcelExams(this.fileToUpload);
     console.log(this.fileToUpload);
   }
+
+
+  // handleFileInput(files: FileList) {
+  //   this.fileToUpload = files.item(0);
+  //   this.restapiservice.uploadFile(this.fileToUpload);
+  //   console.log(this.fileToUpload);
+  // }
 
 }

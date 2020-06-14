@@ -15,12 +15,14 @@ import { Observable } from 'rxjs';
 export class MisCursosComponent implements OnInit {
 
   users: Master[] = [];
+  profile : boolean;
 
   constructor(private router : Router,private modalService: NgbModal, public restapiservice : RestapiService) { }
 
   ngOnInit(): void {
 
     this.users = this.restapiservice.getMaster();
+    this.profile = this.restapiservice.getProfile();
   }
 
   open() {
