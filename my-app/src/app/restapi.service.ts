@@ -28,7 +28,6 @@ export class RestapiService {
     new Task("3","Tarea 3",this.exams2,"Juan Perez"),
     new Task("4","Tarea 4",this.exams2,"Juan Perez"),
     new Task("5","Tarea 5",this.exams2,"Juan Perez")
-
   ];
 
   details: Detail [] = [
@@ -127,11 +126,31 @@ export class RestapiService {
 
   }
 
-  addMaster(event){ 
+  addMaster(event){
 
     var newMaster = new Master("4","Cocina Basica 4",true, this.details, "admin");
 
     this.masters.push(newMaster);
+
+    this.http.post("http://localhost:8080/addmaster/",
+    {
+      "name": event.value.modulo,
+      "active": true,
+      "creator": localStorage.token
+   
+    })
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",val);
+        },
+        response => {
+          // this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
+
     
   }
 
@@ -253,7 +272,7 @@ export class RestapiService {
 
   getProfile(){
 
-    return false;
+    return true;
   }
 
   
