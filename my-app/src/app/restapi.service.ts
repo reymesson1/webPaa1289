@@ -137,7 +137,7 @@ export class RestapiService {
       "name": event.value.modulo,
       "active": true,
       "creator": localStorage.token
-   
+      
     })
     .subscribe(
         (val) => {
