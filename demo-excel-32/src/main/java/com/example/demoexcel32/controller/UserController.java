@@ -6,7 +6,9 @@
 package com.example.demoexcel32.controller;
 
 import com.example.demoexcel32.document.Users;
+import com.example.demoexcel32.model.Master;
 import com.example.demoexcel32.repository.UserRepository;
+import com.example.demoexcel32.service.MasterService;
 import com.example.demoexcel32.util.AuthenticationResponse;
 import com.example.demoexcel32.util.JwtRequestFilter;
 import com.example.demoexcel32.util.JwtUtil;
@@ -46,16 +48,27 @@ public class UserController {
     
     private UserRepository userRepository;
     
-    public UserController(UserRepository userRepository){
+    public MasterService service;
+                
+//    @CrossOrigin(origins="http://localhost:4200")
+//    @RequestMapping(value = "/masters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Master> getMaster() throws Exception{
+//
+//        return service.getMasterList();
+//    }
+
+    
+    public UserController(MasterService service){
         
-        this.userRepository = userRepository;    
+        this.service = service;
     }
     
     @CrossOrigin(origins="http://localhost:4200")
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Users> getUsers() throws Exception{
+    public List<Master> getUsers() throws Exception{
 
-        return userRepository.findAll();
+        return this.service.getMasterList();
+//        return userRepository.findAll();
     }
         
 }

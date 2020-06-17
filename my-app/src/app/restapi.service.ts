@@ -86,7 +86,22 @@ export class RestapiService {
 
   getAPI(url:string){
 
-    this.http.get(url)
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTIzMzQ5NDYsImlhdCI6MTU5MjI5ODk0Nn0.zPfwdR3G1w7ZK9sAXkQYn_quu9vFBh2H5dIirYqLAHg'
+      // 'Accept': 'application/json',
+      // 'Access-Control-Allow-Headers': 'Content-Type',
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new Headers(headerDict), 
+    };
+
+    let customHeaders = new Headers({ Authorization: "Bearer " + localStorage.getItem("token")});
+const requestOptions: RequestOptionsArgs = { headers: customHeaders };
+return this.http.get("/api/orders", requestOptions);
+
+    this.http.get(url, requestOptions)
     // this.http.get('http://localhost:8080/masters')
       .subscribe(
         (val) => {
