@@ -125,6 +125,26 @@ export class RestapiService {
 
     this.masters[id-1].details.push(newDetail);
 
+    this.http.post("http://localhost:8080/adddetail",
+    {
+      "id": "1",
+      "name": "test",
+      "active": true,
+      "creator": localStorage.getItem("token") 
+    },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",val);
+        },
+        response => {
+          // this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
+
+
   }
 
   addMaster(event){ 

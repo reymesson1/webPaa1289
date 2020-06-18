@@ -5,7 +5,10 @@
  */
 package com.example.demoexcel32.controller;
 
+import com.example.demoexcel32.document.Masters;
 import com.example.demoexcel32.document.Users;
+import com.example.demoexcel32.model.Master;
+import com.example.demoexcel32.repository.MasterRepository;
 import com.example.demoexcel32.repository.UserRepository;
 import com.example.demoexcel32.util.AuthenticationRequest;
 import com.example.demoexcel32.util.AuthenticationResponse;
@@ -31,9 +34,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class UserController {
     
     private UserRepository userRepository;
+    private MasterRepository masterRepository;
 
     @Autowired    
     private AuthenticationManager authenticationManager;
@@ -44,12 +49,12 @@ public class UserController {
     @Autowired    
     private MyUserDetailsService userDetailsService;
     
-    public UserController(UserRepository userRepository){
+    public UserController(UserRepository userRepository, MasterRepository masterRepository){
         
-        this.userRepository = userRepository;    
+        this.userRepository = userRepository;
+        this.masterRepository = masterRepository;
     }
     
-    @CrossOrigin(origins="http://localhost:4200")
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
@@ -71,13 +76,18 @@ public class UserController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    
-    @CrossOrigin(origins="http://localhost:4200")
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Users> getUsers() throws Exception{
 
         return userRepository.findAll();
     }
+    
+    @RequestMapping(value = "/mongomasters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Masters> getMongoMasters() throws Exception{
+
+        return masterRepository.findAll();
+    }
+
 
     
     

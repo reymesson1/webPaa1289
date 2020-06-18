@@ -5,12 +5,14 @@
  */
 package com.example.demoexcel32.service;
 
+import com.example.demoexcel32.document.Masters;
 import com.example.demoexcel32.model.Detail;
 import com.example.demoexcel32.model.Exam;
 import com.example.demoexcel32.model.Master;
 import com.example.demoexcel32.model.Qualification;
 import com.example.demoexcel32.model.Question;
 import com.example.demoexcel32.model.Task;
+import com.example.demoexcel32.repository.MasterRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
@@ -33,10 +35,16 @@ public class MasterService {
     public List<Exam> exams = new ArrayList<Exam>();
     public List<Question> questions = new ArrayList<Question>();
     public int counter = 0;
-            
-    public List<Master> getMasterList(){
+    MasterRepository masterRepository;
     
-        return master;
+    public MasterService(MasterRepository masterRepository){
+        
+        this.masterRepository = masterRepository;    
+    }
+            
+    public List<Masters> getMasterList(){
+    
+        return this.masterRepository.findAll();
     }
     
     public void addMaster(String str) throws Exception{
@@ -56,7 +64,7 @@ public class MasterService {
         counter++;
         JSONObject jsonObj = new JSONObject(str);
         List<Detail> details = new ArrayList<Detail>();
-        Master m = new Master();
+        Masters m = new Masters();
         m.setId(""+this.counter);
         m.setName(jsonObj.getString("name"));
         m.setActive(true);
@@ -89,7 +97,9 @@ public class MasterService {
         details.add(d4);
         details.add(d5);
         m.setDetails(details);
-        master.add(m);
+//        master.add(m);
+//        Masters m20 = new Masters();
+        masterRepository.insert(m);
 
         System.out.println(str);
     }

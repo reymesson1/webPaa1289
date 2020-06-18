@@ -5,15 +5,16 @@
  */
 package com.example.demoexcel32.repository;
 
+import com.example.demoexcel32.document.Masters;
 import com.example.demoexcel32.model.Master;
-import com.example.demoexcel32.document.Users;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  *
  * @author Rey Messon
  */
-public interface UserRepository extends MongoRepository<Users, Integer> {
+
+public interface MasterRepository extends MongoRepository<Masters, Integer> {
 
     
 }
