@@ -4,11 +4,13 @@ import { Observable, of } from 'rxjs';
 import {Router} from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 
-export class RestapiService {
+export class RestapiService {  
 
   data : String = "";
   TOKEN_KEY = 'token';
@@ -54,8 +56,8 @@ export class RestapiService {
   }
 
   setLogin(event){ 
-
-    this.http.post("http://localhost:8080/loading/",
+ 
+    this.http.post("http://localhost:8080/authenticate",
     {
       "username": event.value.username,
       "password": event.value.password
@@ -63,7 +65,7 @@ export class RestapiService {
     .subscribe(
         (val) => {
           
-            localStorage.setItem(this.TOKEN_KEY, val[0].token);
+            localStorage.setItem(this.TOKEN_KEY, val.jwt);
             
             if(this.isAuthenticated){
 
@@ -86,9 +88,17 @@ export class RestapiService {
 
   getAPI(url:string){
 
-    this.http.get(url)
-    // this.http.get('http://localhost:8080/masters')
-      .subscribe(
+    // let headers = new HttpHeaders();
+    // headers = headers.append('Content-Type', 'application/json');
+    // this.http.get(url, {headers: new HttpHeaders().set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTI1MDE3MDcsImlhdCI6MTU5MjQ2NTcwN30.xdkqHajAJLyxV_30PwQyPc3Q--j4Zdmuvy1DORKssZU')})
+    // this.http.get(url,{headers:headers})
+    
+    // headers = headers.append('Authorization', "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTI1MDE3MDcsImlhdCI6MTU5MjQ2NTcwN30.xdkqHajAJLyxV_30PwQyPc3Q--j4Zdmuvy1DORKssZU");
+    // let customHeaders = new Headers({ Authorization: "Bearer " + localStorage.getItem("token")});
+    // const requestOptions: RequestOptionsArgs = { headers: customHeaders };
+    // this.http.get(url, {headers: new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("token")})})
+    this.http.get("http://localhost:8080/masters", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
+    .subscribe(
         (val) => {
             console.log("POST call successful value returned in body",val);
 
@@ -100,10 +110,10 @@ export class RestapiService {
         },
         response => {
           this.data=response;
-          console.log("POST call in error", response);
+          console.log("GET call in error", response);
         },
         () => {
-          console.log("The POST observable is now completed.");
+          console.log("The GET observable is now completed.");
     });
 
   }
@@ -126,19 +136,18 @@ export class RestapiService {
 
   }
 
-  addMaster(event){
+  addMaster(event){ 
 
     var newMaster = new Master("4","Cocina Basica 4",true, this.details, "admin");
 
     this.masters.push(newMaster);
 
-    this.http.post("http://localhost:8080/addmaster/",
+    this.http.post("http://localhost:8080/addmaster",
     {
-      "name": event.value.modulo,
+      "name": "test",
       "active": true,
-      "creator": localStorage.token
-      
-    })
+      "creator": localStorage.getItem("token")
+    },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
     .subscribe(
         (val) => {
             console.log("POST call successful value returned in body",val);

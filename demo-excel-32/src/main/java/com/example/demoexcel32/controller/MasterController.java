@@ -42,7 +42,7 @@ public class MasterController {
         this.service = service;
     }
             
-    @CrossOrigin(origins="http://localhost:4200")
+//    @CrossOrigin(origins="http://localhost:4200")
     @RequestMapping(value = "/masters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Master> getMaster() throws Exception{
 

@@ -49,6 +49,7 @@ public class UserController {
         this.userRepository = userRepository;    
     }
     
+    @CrossOrigin(origins="http://localhost:4200")
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
