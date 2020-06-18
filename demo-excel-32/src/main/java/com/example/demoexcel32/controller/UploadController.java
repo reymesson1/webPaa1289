@@ -54,6 +54,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class UploadController {
 
         UploadService uploadService;
@@ -62,7 +63,6 @@ public class UploadController {
             this.uploadService = uploadService;        
         }
         
-        @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/loading", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 
         public List<User> loading(@RequestBody String str) throws Exception{
@@ -90,14 +90,12 @@ public class UploadController {
                 return contacts;
         }
                                 
-        @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/uploadexcel", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
         public void uploadFileExcel(@RequestParam("file") MultipartFile file) throws IOException {
         
             uploadService.uploadFileExcel(file);
         }
                                 
-        @CrossOrigin(origins="http://localhost:4200")
         @RequestMapping(value = "/uploadexcelexams", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
         public void uploadFileExcelExams(@RequestParam("file") MultipartFile file) throws IOException {
 

@@ -88,15 +88,6 @@ export class RestapiService {
 
   getAPI(url:string){
 
-    // let headers = new HttpHeaders();
-    // headers = headers.append('Content-Type', 'application/json');
-    // this.http.get(url, {headers: new HttpHeaders().set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTI1MDE3MDcsImlhdCI6MTU5MjQ2NTcwN30.xdkqHajAJLyxV_30PwQyPc3Q--j4Zdmuvy1DORKssZU')})
-    // this.http.get(url,{headers:headers})
-    
-    // headers = headers.append('Authorization', "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTI1MDE3MDcsImlhdCI6MTU5MjQ2NTcwN30.xdkqHajAJLyxV_30PwQyPc3Q--j4Zdmuvy1DORKssZU");
-    // let customHeaders = new Headers({ Authorization: "Bearer " + localStorage.getItem("token")});
-    // const requestOptions: RequestOptionsArgs = { headers: customHeaders };
-    // this.http.get(url, {headers: new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("token")})})
     this.http.get("http://localhost:8080/masters", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
     .subscribe(
         (val) => {
@@ -146,7 +137,7 @@ export class RestapiService {
     {
       "name": "test",
       "active": true,
-      "creator": localStorage.getItem("token")
+      "creator": localStorage.getItem("token") 
     },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
     .subscribe(
         (val) => {
@@ -192,7 +183,7 @@ export class RestapiService {
     const formData: FormData = new FormData();
     formData.append('file', event, event.name);
 
-    this.http.post("http://localhost:8080/uploadtask/",
+    this.http.post("http://localhost:8080/uploadtask",
     formData)
     .subscribe(
           (val) => {
@@ -213,8 +204,8 @@ export class RestapiService {
     const formData: FormData = new FormData();
     formData.append('file', event, event.name);
 
-    this.http.post("http://localhost:8080/uploadexcel/",
-    formData)
+    this.http.post("http://localhost:8080/uploadexcel",
+    formData,{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
     .subscribe(
           (val) => {
               console.log("POST call successful value returned in body",val);
@@ -234,8 +225,8 @@ export class RestapiService {
     const formData: FormData = new FormData();
     formData.append('file', event, event.name);
 
-    this.http.post("http://localhost:8080/uploadexcelexams/",
-    formData)
+    this.http.post("http://localhost:8080/uploadexcelexams",
+    formData,{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
     .subscribe(
           (val) => {
               console.log("POST call successful value returned in body",val);
@@ -258,12 +249,12 @@ export class RestapiService {
 
   getAPIQualification(){
 
-    this.http.post("http://localhost:8080/qualification/",
+    this.http.post("http://localhost:8080/qualification",
     {
       "id": "1",
       "created" : "",
       "creator": localStorage.token
-    })
+    },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
     .subscribe(
         (val) => {
                 console.log("POST call successful value returned in body",val);

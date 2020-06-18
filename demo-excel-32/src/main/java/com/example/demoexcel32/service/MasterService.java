@@ -60,6 +60,7 @@ public class MasterService {
         m.setId(""+this.counter);
         m.setName(jsonObj.getString("name"));
         m.setActive(true);
+        m.setCreator(jsonObj.getString("creator"));
         Detail d = new Detail();
         Detail d2 = new Detail();
         Detail d3 = new Detail();
