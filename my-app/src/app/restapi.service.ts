@@ -100,7 +100,7 @@ export class RestapiService {
     this.http.get("http://localhost:8080/masters", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
     .subscribe(
         (val) => {
-            console.log("POST call successful value returned in body",val);
+            console.log("GET call successful value returned in body",val);
 
             this.masters = val;
             // val.map(res=>{
