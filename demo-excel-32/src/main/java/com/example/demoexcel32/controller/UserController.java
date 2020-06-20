@@ -57,7 +57,16 @@ public class UserController {
     
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-
+        
+//        List<Users> arrUsers = userRepository.findAll();
+//        
+////        for(int x=0;x<arrUsers.size();x++){
+////
+////            System.out.println( arrUsers.get(x).getName() +" "+ authenticationRequest.getUsername() );
+////            
+////        }
+        
+        
         try {
                 authenticationManager.authenticate(
                                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())

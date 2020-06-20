@@ -8,12 +8,20 @@ package com.example.demoexcel32.repository;
 import com.example.demoexcel32.model.Master;
 import com.example.demoexcel32.document.Users;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Rey Messon
  */
+@Repository
 public interface UserRepository extends MongoRepository<Users, Integer> {
+    
+    @Query
+    public User findByUsername(String username);
+
 
     
 }

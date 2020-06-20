@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   logOff(){
     this.restapiservice.logout();
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/');
   }
 
   viewProfile(){
