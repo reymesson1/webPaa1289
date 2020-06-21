@@ -17,13 +17,13 @@ public class Users {
 
     @Id
     private Integer id;
-    private String name;
+    private String username;
     private String teamName;
     private Long salary;
 
-    public Users(Integer id, String name, String teamName, Long salary) {
+    public Users(Integer id, String username, String teamName, Long salary) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.teamName = teamName;
         this.salary = salary;
     }
@@ -37,11 +37,11 @@ public class Users {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getTeamName() {
