@@ -33,6 +33,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -104,7 +105,7 @@ public class UploadService {
 
     }
 
-    public void uploadFileExcelExams(@RequestParam("file") MultipartFile file) throws IOException {
+    public void uploadFileExcelExams(@RequestParam("file") MultipartFile file, @RequestBody String str) throws IOException {
 
         Path filepath = Paths.get("C:\\folderA\\", file.getOriginalFilename());
 
@@ -166,7 +167,15 @@ public class UploadService {
         service.exams.add(e);
 
         System.out.println(file.getOriginalFilename());
+        
+        System.out.println(str);
 
+    }
+    
+    public void uploadAddFileExcelExams(@RequestParam("file") MultipartFile file, @RequestBody String str){
+        
+        System.out.println(str);
+        
     }
     
     

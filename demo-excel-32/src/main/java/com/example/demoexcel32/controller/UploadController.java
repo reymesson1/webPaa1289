@@ -97,9 +97,15 @@ public class UploadController {
         }
                                 
         @RequestMapping(value = "/uploadexcelexams", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-        public void uploadFileExcelExams(@RequestParam("file") MultipartFile file) throws IOException {
+        public void uploadFileExcelExams(@RequestParam("file") MultipartFile file, @RequestBody String str) throws IOException {
 
-            uploadService.uploadFileExcelExams(file);
+            uploadService.uploadFileExcelExams(file, str);
+        }
+        
+        @RequestMapping(value = "/addexamtotask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+        public void uploadAddFileExcelExams(@RequestParam("file") MultipartFile file, @RequestBody String str) throws IOException {
+
+            uploadService.uploadAddFileExcelExams(file, str);
         }
             
 }

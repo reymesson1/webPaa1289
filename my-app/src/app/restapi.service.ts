@@ -137,14 +137,14 @@ export class RestapiService {
             console.log("POST call successful value returned in body",val);
         },
         response => {
-          // this.data=response;
+             // this.data=response; 
           console.log("POST call in error", response);
         },
         () => {
           console.log("The POST observable is now completed.");
     });
 
-
+ 
   }
 
   addMaster(event){ 
@@ -240,7 +240,7 @@ export class RestapiService {
 
 
   }
-  uploadFileExcelExams(event){
+  uploadFileExcelExams(event, nameurl, name, nameTask){
 
     const formData: FormData = new FormData();
     formData.append('file', event, event.name);
@@ -293,6 +293,31 @@ export class RestapiService {
   getProfile(){
 
     return true;
+  }
+
+  addExamToTask(event, name, nameurl){
+
+    console.log('addExamToTask');
+    const formData: FormData = new FormData();
+    formData.append('file', event, event.name);
+
+
+    this.http.post("http://localhost:8080/addexamtotask",
+    formData,{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
+    .subscribe(
+        (val) => {
+                console.log("POST call successful value returned in body",val);
+                this.qualifications = val
+        },
+        response => {
+          this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
+
+
   }
 
   

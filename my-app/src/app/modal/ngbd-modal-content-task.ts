@@ -26,13 +26,23 @@ export class NgbdModalContentTask {
   onSubmit(event){
     console.log(this.name);
     // this.restapiservice.addDetail(event, this.name);    
-    this.restapiservice.addTask(event, this.name, this.nameurl);  
+    this.restapiservice.addExamToTask(event, this.name, this.nameurl);  
+
+    this.activeModal.close();
+
   
   }
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    this.restapiservice.uploadFileExcelExams(this.fileToUpload);
+    this.restapiservice.addExamToTask(this.fileToUpload, this.name, this.nameurl);
+
+    setTimeout(() => {
+      
+      this.activeModal.close();
+
+    }, 2000);
+
     console.log(this.fileToUpload);
   }
 
