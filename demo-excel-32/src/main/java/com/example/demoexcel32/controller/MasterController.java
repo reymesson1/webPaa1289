@@ -10,6 +10,7 @@ import com.example.demoexcel32.model.Detail;
 import com.example.demoexcel32.model.Exam;
 import com.example.demoexcel32.model.Master;
 import com.example.demoexcel32.model.Qualification;
+import com.example.demoexcel32.model.Question;
 import com.example.demoexcel32.model.Task;
 import com.example.demoexcel32.service.MasterService;
 import com.example.demoexcel32.service.UploadService;
@@ -110,6 +111,13 @@ public class MasterController {
     private List<Qualification> createTestData(){
         return service.qualifications;
     }
+    
+    @RequestMapping(value = "/questions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Question> getQuestions(){
+
+        return service.getQuestions();
+    }
+
 
     
 }

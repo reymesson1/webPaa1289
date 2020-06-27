@@ -33,7 +33,7 @@ public class MasterService {
     public List<Master> master = new ArrayList<Master>();
     public List<Qualification> qualifications = new ArrayList<Qualification>();
     public List<Exam> exams = new ArrayList<Exam>();
-    public List<Question> questions = new ArrayList<Question>();
+    private List<Question> questions = new ArrayList<Question>();
     public int counter = 0;
     MasterRepository masterRepository;
     
@@ -169,6 +169,12 @@ public class MasterService {
         t.setId("1");
         t.setName("Task");
         t.setCreator("2313231987jkdjsdks");
+        Exam e = new Exam();
+        List<Exam> exams = new ArrayList<Exam>();
+        e.setId("1");
+        e.setName("Test Edit Task");
+        e.setQuestions(questions);
+        t.setExams(exams);
         System.out.println(str);
         JSONObject jsonObj = new JSONObject(str);
         Integer masterId = Integer.parseInt(jsonObj.getString("idCurso"));
@@ -199,5 +205,20 @@ public class MasterService {
     
         System.out.println("I am here!");
     }
+    
+     /**
+     * @return the questions
+     */
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    /**
+     * @param questions the questions to set
+     */
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
     
 }

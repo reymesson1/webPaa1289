@@ -158,11 +158,11 @@ public class UploadService {
                                 answers.add(a3);
                                 answers.add(a4);
                             q.setAnswers(answers);
-                        service.questions.add(q);
+                        service.getQuestions().add(q);
 
         });
 
-        e.setQuestions(service.questions);
+        e.setQuestions(service.getQuestions());
         service.exams.add(e);
 
         System.out.println(file.getOriginalFilename());

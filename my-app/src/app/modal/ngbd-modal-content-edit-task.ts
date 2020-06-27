@@ -14,11 +14,23 @@ export class NgbdModalContentEditTask {
   @Input() name;
   @Input() nameurl;
   @Input() nameTask;
+  questions: any[] = [
+
+  ];
 
   constructor(public restapiservice : RestapiService, private router : Router, public activeModal: NgbActiveModal) { }
 
   onSubmit(event){
+
+    this.restapiservice.getQuestions();
+
     this.restapiservice.editTask(event, this.nameurl, this.name , this.nameTask);    
+  }
+
+  getQuestions(){
+
+    this.restapiservice.getQuestions();
+
   }
 
 }

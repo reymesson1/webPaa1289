@@ -15,6 +15,9 @@ export class RestapiService {
   data : String = "";
   TOKEN_KEY = 'token';
 
+  questions: any[] = [
+
+  ];
   exams: Exam[] = [
 
   ];
@@ -137,7 +140,7 @@ export class RestapiService {
             console.log("POST call successful value returned in body",val);
         },
         response => {
-          // this.data=response;
+            // this.data=response;
           console.log("POST call in error", response);
         },
         () => {
@@ -293,6 +296,32 @@ export class RestapiService {
   getProfile(){
 
     return true;
+  }
+
+  getQuestions(){
+
+    this.http.get("http://localhost:8080/questions", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
+    .subscribe(
+        (val) => {
+            console.log("GET call successful value returned in body",val);
+
+            this.questions = val;
+            console.log(val);
+            // val.map(res=>{
+            //   this.users.push(res);
+            // })
+                      
+        },
+        response => {
+          this.data=response;
+          console.log("GET call in error", response);
+        },
+        () => {
+          console.log("The GET observable is now completed.");
+    });
+
+
+
   }
 
   
