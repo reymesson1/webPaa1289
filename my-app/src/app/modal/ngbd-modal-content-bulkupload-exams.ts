@@ -19,6 +19,8 @@ export class NgbdModalContentBulkUploadExams {
     this.fileToUpload = files.item(0);
     this.restapiservice.uploadFileExcelExams(this.fileToUpload);
     console.log(this.fileToUpload);
+    this.activeModal.close();
+
   }
 
 

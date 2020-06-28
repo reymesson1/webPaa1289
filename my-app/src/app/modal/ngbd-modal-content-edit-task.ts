@@ -18,7 +18,9 @@ export class NgbdModalContentEditTask {
   constructor(public restapiservice : RestapiService, private router : Router, public activeModal: NgbActiveModal) { }
 
   onSubmit(event){
-    this.restapiservice.editTask(event, this.nameurl, this.name , this.nameTask);    
+    this.restapiservice.editTask(event, this.nameurl, this.name , this.nameTask);   
+    this.activeModal.close();
+ 
   }
 
 }

@@ -48,6 +48,8 @@ public class MasterService {
     }
     
     public void addMaster(String str) throws Exception{
+        
+        long last = masterRepository.count();
             
         List<Task> tasks = new ArrayList<Task>();
         Task t = new Task();
@@ -65,7 +67,7 @@ public class MasterService {
         JSONObject jsonObj = new JSONObject(str);
         List<Detail> details = new ArrayList<Detail>();
         Masters m = new Masters();
-        m.setId(""+this.counter);
+        m.setId(""+last+1);
         m.setName(jsonObj.getString("name"));
         m.setActive(true);
         m.setCreator(jsonObj.getString("creator"));

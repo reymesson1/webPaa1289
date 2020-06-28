@@ -19,7 +19,9 @@ export class NgbdModalContentEdit {
   onSubmit(event){
     console.log(this.name + " " + this.detailId);
     console.log(event);
-    this.restapiservice.editDetail(event, this.name, this.detailId);    
+    this.restapiservice.editDetail(event, this.name, this.detailId);  
+    this.activeModal.close();
+  
   }
 
 }

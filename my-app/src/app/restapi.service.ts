@@ -14,6 +14,8 @@ export class RestapiService {
 
   data : String = "";
   TOKEN_KEY = 'token';
+  idActualState = 0;
+  idNextState = 0;
 
   exams: Exam[] = [
 
@@ -137,7 +139,7 @@ export class RestapiService {
             console.log("POST call successful value returned in body",val);
         },
         response => {
-          // this.data=response;
+           // this.data=response;
           console.log("POST call in error", response);
         },
         () => {
@@ -149,13 +151,13 @@ export class RestapiService {
 
   addMaster(event){ 
 
-    var newMaster = new Master("4","Cocina Basica 4",true, this.details, "admin");
+    var newMaster = new Master("4",event.value.modulo,true, this.details, "admin");
 
     this.masters.push(newMaster);
 
     this.http.post("http://localhost:8080/addmaster",
     {
-      "name": "test",
+      "name": event.value.modulo,
       "active": true,
       "creator": localStorage.getItem("token") 
     },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})

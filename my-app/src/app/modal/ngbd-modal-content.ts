@@ -16,7 +16,9 @@ export class NgbdModalContent {
 
   onSubmit(event){
     console.log(event);
-    this.restapiservice.addMaster(event);    
+    this.restapiservice.addMaster(event);   
+    this.activeModal.close();
+ 
   }
 
 }
