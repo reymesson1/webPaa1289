@@ -16,6 +16,9 @@ import com.example.demoexcel32.repository.MasterRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
+import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -180,13 +183,18 @@ public class MasterService {
 
     public void removeTask(@RequestBody String str) throws Exception{
 
-        System.out.println(str);
-        JSONObject jsonObj = new JSONObject(str);
-        Integer masterId = Integer.parseInt(jsonObj.getString("idCurso"));
-        Integer detailId = Integer.parseInt(jsonObj.getString("idModulo"));
-        Integer taskId = Integer.parseInt(jsonObj.getString("idTask"));
-        System.out.println(this.master.get(masterId-1).getDetails().get(detailId-1).getName());
-        this.master.get(masterId-1).getDetails().get(detailId-1).getTasks().remove(taskId-1);
+//        System.out.println(str);
+//        JSONObject jsonObj = new JSONObject(str);
+//        Integer masterId = Integer.parseInt(jsonObj.getString("idCurso"));
+//        Integer detailId = Integer.parseInt(jsonObj.getString("idModulo"));
+//        Integer taskId = Integer.parseInt(jsonObj.getString("idTask"));
+//        System.out.println(this.master.get(masterId-1).getDetails().get(detailId-1).getName());
+//        this.master.get(masterId-1).getDetails().get(detailId-1).getTasks().remove(taskId-1);
+        
+        Masters m = new Masters();
+        m.setId("2");
+        
+        this.masterRepository.delete(m);
 
     }
     

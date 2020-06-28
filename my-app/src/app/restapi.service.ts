@@ -196,6 +196,25 @@ export class RestapiService {
   removeTask(idUrl, idModulo, idTask){
 
     this.masters[idUrl-1].details[idModulo-1].tasks.splice(idTask-1,1);
+
+    this.http.post("http://localhost:8080/removetask",
+    {
+      "id": "1",
+      "name": "test",
+      "active": true,
+      "creator": localStorage.getItem("token") 
+    },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",val);
+        },
+        response => {
+          // this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
   }
 
   uploadFile(event){
@@ -288,7 +307,7 @@ export class RestapiService {
           console.log("The POST observable is now completed.");
     });
 
-  }
+  } 
 
   getProfile(){
 
