@@ -22,7 +22,7 @@ public interface MasterRepository extends MongoRepository<Masters, Integer> {
     List<Masters> getMastersById(String id);
     
     //@Query(value="{'_id':'3'},{$set:{'name':'Cocina Basica 5'}}")
-    @Query(value="db.masters.update({'_id':'3'},{$set:{'name':'Cocina Basica 7'}})")            
+    @Query(value="db.masters.update({'_id':'3'},{$set:{'name':'Cocina Basica 7'}});")            
     List<Masters> setMastersById();
 
 }
