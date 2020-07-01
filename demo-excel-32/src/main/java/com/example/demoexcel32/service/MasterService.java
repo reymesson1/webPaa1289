@@ -15,6 +15,7 @@ import com.example.demoexcel32.model.Task;
 import com.example.demoexcel32.repository.MasterRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,8 @@ public class MasterService {
     public List<Masters> getMasterList(){
     
         return this.masterRepository.findAll();
+//          return this.masterRepository.getMastersById("2");
+
     }
     
     public void addMaster(String str) throws Exception{
@@ -67,7 +70,8 @@ public class MasterService {
         JSONObject jsonObj = new JSONObject(str);
         List<Detail> details = new ArrayList<Detail>();
         Masters m = new Masters();
-        m.setId(""+last+1);
+        last++;
+        m.setId(""+last);
         m.setName(jsonObj.getString("name"));
         m.setActive(true);
         m.setCreator(jsonObj.getString("creator"));
@@ -121,8 +125,12 @@ public class MasterService {
         d.setId(jsonObj.getString("id"));
         d.setName(jsonObj.getString("name")); 
         d.setCreator(jsonObj.getString("creator"));
-        this.master.get(masterId-1).getDetails().add(d);
-
+//        this.master.get(masterId-1).getDetails().add(d);
+        
+        System.out.println(this.masterRepository.findAll());
+        
+        this.masterRepository.setMastersById();
+                
     }
     
     public void removeDetail(String str) throws Exception{
