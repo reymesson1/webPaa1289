@@ -144,7 +144,7 @@ export class RestapiService {
         },
         () => {
           console.log("The POST observable is now completed.");
-    });
+    }); 
 
 
   }
