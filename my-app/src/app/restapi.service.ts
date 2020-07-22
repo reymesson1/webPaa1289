@@ -67,7 +67,7 @@ export class RestapiService {
     .subscribe(
         (val) => {
           
-            localStorage.setItem(this.TOKEN_KEY, val.jwt);
+            // localStorage.setItem(this.TOKEN_KEY, val.jwt);
             
             if(this.isAuthenticated){
 
@@ -95,7 +95,7 @@ export class RestapiService {
         (val) => {
             console.log("GET call successful value returned in body",val);
 
-            this.masters = val;
+            // this.masters = val;
             // val.map(res=>{
             //   this.users.push(res);
             // })
@@ -137,7 +137,7 @@ export class RestapiService {
     .subscribe(
         (val) => {
             console.log("POST call successful value returned in body",val);
-        },
+         },
         response => {
            // this.data=response;
           console.log("POST call in error", response);
@@ -280,7 +280,7 @@ export class RestapiService {
     .subscribe(
         (val) => {
                 console.log("POST call successful value returned in body",val);
-                this.qualifications = val
+                // this.qualifications = val
         },
         response => {
           this.data=response;

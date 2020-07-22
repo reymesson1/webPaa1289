@@ -38,7 +38,8 @@ export class TaskComponent implements OnInit {
       res3.id==this.idTask
     )[0]
 
-    this.exam = this.data.exams[0];
+    // this.exam = this.data.exams[0];
+    this.exam = null;
  
     console.log(this.data);
   }
