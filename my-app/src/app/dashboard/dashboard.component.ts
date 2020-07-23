@@ -17,10 +17,11 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 })
 export class DashboardComponent implements OnInit {
 
-  users: Master[] = [];
+  users: any[] = [];
   id:any;
-  data : Master[] = [];
+  data : any[] = [];
   profile : boolean;
+  newData : any[] = [];
 
   constructor(private router : Router,private modalService: NgbModal, public restapiservice : RestapiService, public route : ActivatedRoute) { }
 
@@ -35,6 +36,8 @@ export class DashboardComponent implements OnInit {
     )[0]
 
     this.profile = this.restapiservice.getProfile();
+
+    this.newData = this.users[0].details;
 
    }
 

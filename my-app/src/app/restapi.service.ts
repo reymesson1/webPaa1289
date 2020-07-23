@@ -58,6 +58,251 @@ export class RestapiService {
   }
 
   setLogin(event){ 
+
+    this.masters = [
+      {
+          "id": "1",
+          "date": null,
+          "name": "Cocina Basica",
+          "created": "2020-06-30T20:02:41.453+0000",
+          "creator": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTM1ODE3MDMsImlhdCI6MTU5MzU0NTcwM30.1zAe6I6coyJADULlmtWrg4kXQsv5EcopoimcpDapyog",
+          "active": true,
+          "details": [
+              {
+                  "id": "1",
+                  "name": "Modulo 1",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:41.454+0000",
+                  "tasks": [
+                      {
+                          "id": "1",
+                          "date": "2020-06-30T20:02:41.447+0000",
+                          "name": "Task 1",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      },
+                      {
+                          "id": "2",
+                          "date": "2020-06-30T20:02:41.447+0000",
+                          "name": "Task 2",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      }
+                  ]
+              },
+              {
+                  "id": "2",
+                  "name": "Modulo 2",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:41.454+0000",
+                  "tasks": [
+                      {
+                          "id": "1",
+                          "date": "2020-06-30T20:02:41.447+0000",
+                          "name": "Task 1",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      },
+                      {
+                          "id": "2",
+                          "date": "2020-06-30T20:02:41.447+0000",
+                          "name": "Task 2",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      }
+                  ]
+              },
+              {
+                  "id": "3",
+                  "name": "Modulo 3",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:41.454+0000",
+                  "tasks": []
+              },
+              {
+                  "id": "4",
+                  "name": "Modulo 4",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:41.454+0000",
+                  "tasks": []
+              },
+              {
+                  "id": "5",
+                  "name": "Modulo 5",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:41.454+0000",
+                  "tasks": []
+              }
+          ]
+      },
+      {
+          "id": "2",
+          "date": null,
+          "name": "Cocina Basica 2",
+          "created": "2020-06-30T20:02:52.867+0000",
+          "creator": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTM1ODE3MDMsImlhdCI6MTU5MzU0NTcwM30.1zAe6I6coyJADULlmtWrg4kXQsv5EcopoimcpDapyog",
+          "active": true,
+          "details": [
+              {
+                  "id": "1",
+                  "name": "Modulo 1",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:52.867+0000",
+                  "tasks": [
+                      {
+                          "id": "1",
+                          "date": "2020-06-30T20:02:52.867+0000",
+                          "name": "Task 1",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      },
+                      {
+                          "id": "2",
+                          "date": "2020-06-30T20:02:52.867+0000",
+                          "name": "Task 2",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      }
+                  ]
+              },
+              {
+                  "id": "2",
+                  "name": "Modulo 2",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:52.867+0000",
+                  "tasks": [
+                      {
+                          "id": "1",
+                          "date": "2020-06-30T20:02:52.867+0000",
+                          "name": "Task 1",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      },
+                      {
+                          "id": "2",
+                          "date": "2020-06-30T20:02:52.867+0000",
+                          "name": "Task 2",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      }
+                  ]
+              },
+              {
+                  "id": "3",
+                  "name": "Modulo 3",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:52.867+0000",
+                  "tasks": []
+              },
+              {
+                  "id": "4",
+                  "name": "Modulo 4",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:52.867+0000",
+                  "tasks": []
+              },
+              {
+                  "id": "5",
+                  "name": "Modulo 5",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:02:52.867+0000",
+                  "tasks": []
+              }
+          ]
+      },
+      {
+          "id": "3",
+          "date": null,
+          "name": "Cocina Basica 5",
+          "created": "2020-06-30T20:03:00.912+0000",
+          "creator": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1OTM1ODE3MDMsImlhdCI6MTU5MzU0NTcwM30.1zAe6I6coyJADULlmtWrg4kXQsv5EcopoimcpDapyog",
+          "active": true,
+          "details": [
+              {
+                  "id": "1",
+                  "name": "Modulo 1",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:03:00.912+0000",
+                  "tasks": [
+                      {
+                          "id": "1",
+                          "date": "2020-06-30T20:03:00.912+0000",
+                          "name": "Task 1",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      },
+                      {
+                          "id": "2",
+                          "date": "2020-06-30T20:03:00.912+0000",
+                          "name": "Task 2",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      }
+                  ]
+              },
+              {
+                  "id": "2",
+                  "name": "Modulo 2",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:03:00.912+0000",
+                  "tasks": [
+                      {
+                          "id": "1",
+                          "date": "2020-06-30T20:03:00.912+0000",
+                          "name": "Task 1",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      },
+                      {
+                          "id": "2",
+                          "date": "2020-06-30T20:03:00.912+0000",
+                          "name": "Task 2",
+                          "exams": [],
+                          "fileName": "",
+                          "creator": "3131938139183sfdfdsf"
+                      }
+                  ]
+              },
+              {
+                  "id": "3",
+                  "name": "Modulo 3",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:03:00.912+0000",
+                  "tasks": []
+              },
+              {
+                  "id": "4",
+                  "name": "Modulo 4",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:03:00.912+0000",
+                  "tasks": []
+              },
+              {
+                  "id": "5",
+                  "name": "Modulo 5",
+                  "creator": "ekkejqiie0ied3434",
+                  "created": "2020-06-30T20:03:00.912+0000",
+                  "tasks": []
+              }
+          ]
+      }
+  ]
+
+    this.router.navigateByUrl('/miscursos');    
+
+  }
+  setLoginAsGuest(event){ 
  
     this.http.post("http://localhost:8080/authenticate",
     {
