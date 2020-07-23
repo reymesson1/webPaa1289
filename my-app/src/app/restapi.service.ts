@@ -8,8 +8,8 @@ import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
-})
-
+}) 
+ 
 export class RestapiService {  
 
   data : String = "";
@@ -65,7 +65,7 @@ export class RestapiService {
       "password": event.value.password
     })
     .subscribe(
-        (val) => {
+        (val : any) => {
           
             localStorage.setItem(this.TOKEN_KEY, val.jwt);
             
@@ -92,7 +92,7 @@ export class RestapiService {
 
     this.http.get("http://localhost:8080/masters", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
     .subscribe(
-        (val) => {
+        (val : any) => {
             console.log("GET call successful value returned in body",val);
 
             this.masters = val;
@@ -278,7 +278,7 @@ export class RestapiService {
       "creator": localStorage.token
     },{headers: new HttpHeaders({"Authorization":"Bearer " + localStorage.getItem("token") })})
     .subscribe(
-        (val) => {
+        (val : any) => {
                 console.log("POST call successful value returned in body",val);
                 this.qualifications = val
         },
@@ -336,7 +336,7 @@ export class Detail {
 export class Task {
   id: string;
   name: string;
-  exams: Exam[];
+  exams: any[];
   creator: string;
 
   constructor(id:string, name:string, exams:Exam[], creator:string){

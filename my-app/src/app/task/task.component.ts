@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestapiService, Task } from '../restapi.service';
+import { RestapiService, Task, Exam } from '../restapi.service';
 
 @Component({
   selector: 'app-task',
@@ -13,7 +13,7 @@ export class TaskComponent implements OnInit {
   idModulo:any;
   idTask:any;
   data: Task[] = [];
-  exam: any[] = [];
+  exam: Exam[] = [];
   current: any = 0;
   next: any = 1;
 
