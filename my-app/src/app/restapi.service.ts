@@ -59,6 +59,71 @@ export class RestapiService {
 
   setLogin(event){ 
 
+
+    this.router.navigateByUrl('/miscursos');    
+
+  }
+  setLoginAsGuest(event){ 
+ 
+    this.http.post("http://localhost:8080/authenticate",
+    {
+      "username": event.value.username,
+      "password": event.value.password
+    })
+    .subscribe(
+        (val) => {
+          
+            // localStorage.setItem(this.TOKEN_KEY, val.jwt);
+            
+            if(this.isAuthenticated){
+
+              this.router.navigateByUrl('/miscursos');    
+            }
+            console.log("POST call successful value returned in body",val);
+          
+        },
+        response => {
+          this.data=response;
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+    });
+
+    return of(this.data);
+
+  }
+
+  getAPI(url:string){
+
+    this.http.get("http://localhost:8080/masters", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
+    .subscribe(
+        (val) => {
+            console.log("GET call successful value returned in body",val);
+
+            // this.masters = val;
+            // val.map(res=>{
+            //   this.users.push(res);
+            // })
+                      
+        },
+        response => {
+          this.data=response;
+          console.log("GET call in error", response);
+        },
+        () => {
+          console.log("The GET observable is now completed.");
+    });
+
+  }
+
+  postAPI(){
+
+
+  }
+
+  getMaster(){
+
     this.masters = [
       {
           "id": "1",
@@ -299,69 +364,6 @@ export class RestapiService {
       }
   ]
 
-    this.router.navigateByUrl('/miscursos');    
-
-  }
-  setLoginAsGuest(event){ 
- 
-    this.http.post("http://localhost:8080/authenticate",
-    {
-      "username": event.value.username,
-      "password": event.value.password
-    })
-    .subscribe(
-        (val) => {
-          
-            // localStorage.setItem(this.TOKEN_KEY, val.jwt);
-            
-            if(this.isAuthenticated){
-
-              this.router.navigateByUrl('/miscursos');    
-            }
-            console.log("POST call successful value returned in body",val);
-          
-        },
-        response => {
-          this.data=response;
-          console.log("POST call in error", response);
-        },
-        () => {
-          console.log("The POST observable is now completed.");
-    });
-
-    return of(this.data);
-
-  }
-
-  getAPI(url:string){
-
-    this.http.get("http://localhost:8080/masters", {headers: new HttpHeaders({ 'Content-Type':'application/json', Authorization: "Bearer "+localStorage.getItem('token')})})
-    .subscribe(
-        (val) => {
-            console.log("GET call successful value returned in body",val);
-
-            // this.masters = val;
-            // val.map(res=>{
-            //   this.users.push(res);
-            // })
-                      
-        },
-        response => {
-          this.data=response;
-          console.log("GET call in error", response);
-        },
-        () => {
-          console.log("The GET observable is now completed.");
-    });
-
-  }
-
-  postAPI(){
-
-
-  }
-
-  getMaster(){
 
     return this.masters;
   }

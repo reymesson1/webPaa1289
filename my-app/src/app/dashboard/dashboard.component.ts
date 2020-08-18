@@ -33,11 +33,17 @@ export class DashboardComponent implements OnInit {
 
     this.users = this.restapiservice.getMaster().filter(data=>
          data.id==this.id
-    )[0]
+    )
 
     this.profile = this.restapiservice.getProfile();
 
-    this.newData = this.users[0].details;
+    setTimeout(() => {
+      
+      console.log(this.restapiservice.getMaster());
+    }, 5000);
+
+
+     this.newData = this.users[0].details;
 
    }
 
