@@ -153,7 +153,7 @@ export class RestapiService {
 
     var newMaster = new Master("4",event.value.modulo,true, this.details, "admin");
 
-    this.masters.push(newMaster);
+    // this.masters.push(newMaster);
 
     this.http.post("http://localhost:8080/addmaster",
     {

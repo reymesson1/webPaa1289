@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(event){
+    console.log(event.value)
     this.restapiservice.setLogin(event);    
   }
 
