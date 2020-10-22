@@ -1,0 +1,9 @@
+.bg-my{
+
+    position: relative;
+    background-image: url("../../assets/raising-includers_v1-hero.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
